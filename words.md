@@ -1,10 +1,12 @@
 # Words
 
-**ROOTR.** The protocol. Also, a coin about a person, as in "launch a ROOTR".
+**Rooter.** The protocol, and the project that builds it.
+
+**ROOTR.** The short name. `$ROOTR` is the token's ticker.
 
 **Root.** To launch a coin for someone, hold it, or bring someone else to it. "ROOT someone" is the button.
 
-**Rooter.** Anyone who roots.
+**A rooter.** Anyone who roots. Lower case, to tell the person from the protocol.
 
 **The person.** The account a coin is keyed to, and the human behind it.
 

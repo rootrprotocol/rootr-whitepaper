@@ -1,11 +1,11 @@
 # How to publish
 
-This repository is the source of the ROOTR whitepaper. GitBook renders it directly from the `main` branch.
+This repository is the source of the Rooter whitepaper. GitBook renders it directly from the `main` branch.
 
 ## One-time setup
 
-1. Sign in to GitBook with the ROOTR account.
-2. Create a space named **ROOTR Whitepaper**.
+1. Sign in to GitBook with the Rooter account.
+2. Create a space named **Rooter Whitepaper**.
 3. In the space, open **Configure → Git Sync**, choose GitHub, and select this repository and the `main` branch. Direction: GitHub to GitBook.
 4. GitBook reads `.gitbook.yaml`: `README.md` is the landing page, `SUMMARY.md` is the sidebar order.
 5. Publish the space to the web from **Share → Publish to the web**. Set the custom subdomain or domain there.

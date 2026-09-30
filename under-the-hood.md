@@ -1,6 +1,6 @@
 # Under the hood
 
-ROOTR is a set of contracts on Robinhood Chain and one offchain service, the verifier, whose only job is to sign a statement that an account has been verified.
+Rooter is a set of contracts on Robinhood Chain and one offchain service, the verifier, whose only job is to sign a statement that an account has been verified.
 
 ## The contracts
 

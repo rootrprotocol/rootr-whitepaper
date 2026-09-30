@@ -1,6 +1,6 @@
 # What comes next
 
-ROOTR ships in an order, not on a calendar. Each step starts when the one before it has been checked. No step below has a date, and none will be given one until it is done.
+Rooter ships in an order, not on a calendar. Each step starts when the one before it has been checked. No step below has a date, and none will be given one until it is done.
 
 **1. The token and this document.** $ROOTR is launched on Pons. This document and the site are published. The token address, supply and treasury addresses go on the Addresses page.
 

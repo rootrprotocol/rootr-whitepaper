@@ -1,4 +1,4 @@
-# Why ROOTR
+# Why Rooter
 
 ## The crowd makes the market
 
@@ -8,16 +8,16 @@ On Robinhood Chain today, that crowd is paid nothing. In the person-coin model a
 
 So the one participant who did nothing to create the market is the only one who earns from it, and the value of an absent person's share is set on fire.
 
-## What ROOTR changes
+## What Rooter changes
 
-ROOTR does not touch the part of that model that works. One transaction, one coin, liquidity locked forever, a fee at trade time, a claim for the person. What ROOTR changes is where the fee goes.
+Rooter does not touch the part of that model that works. One transaction, one coin, liquidity locked forever, a fee at trade time, a claim for the person. What Rooter changes is where the fee goes.
 
 - **Rooters get paid.** Half a point of every trade goes into a pool for the coin's holders, split by how much you held and for how long. Hold through the quiet weeks and you earn from every trade in them.
 - **The launcher gets paid, but only when the person shows up.** Until the person claims, the launcher's half point goes to the person. After the claim, it goes to the launcher, on every trade, for good. Launching for someone who never arrives pays nothing. Bringing them in is the best trade a launcher can make.
 - **Bringing a trade pays.** Every wallet has a root link for every coin. A trade that comes through your link pays you a quarter point of it, on chain, that trade.
 - **Nothing is burned.** If the person has not claimed after 90 days, their unclaimed share goes to the coin's holders, because they are the reason the market existed.
 
-The trader still pays 3%. Not a basis point more. What ROOTR moves is the destination, and it moves it toward the people who were there.
+The trader still pays 3%. Not a basis point more. What Rooter moves is the destination, and it moves it toward the people who were there.
 
 ## The one idea
 

@@ -5,7 +5,7 @@ Who are you rooting for? A matchup makes it a real question with a scoreboard.
 ## The rules
 
 - Two coins. Seven days.
-- A sponsor puts up a prize in ETH or $ROOTR. Anyone can sponsor. ROOTR sponsors one featured matchup each week from its own share of fees.
+- A sponsor puts up a prize in ETH or $ROOTR. Anyone can sponsor. Rooter sponsors one featured matchup each week from its own share of fees.
 - Rooted volume on each coin during the window is counted from the fee hook's own events.
 - At the close, the prize is paid into the winning coin's Rooter Pool and distributed to its holders like any other fee.
 

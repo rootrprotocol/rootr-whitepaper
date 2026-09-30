@@ -4,7 +4,7 @@ To root for someone is to buy their coin, hold it, or bring someone else to it. 
 
 ## Buying and selling
 
-You trade through the ROOTR router against the coin's locked pool. You set your slippage and your deadline. On every trade, the fee hook takes 3% of the quote side before the swap runs:
+You trade through Rooter's router against the coin's locked pool. You set your slippage and your deadline. On every trade, the fee hook takes 3% of the quote side before the swap runs:
 
 - On a buy, 3% of the ETH or stock token you send is taken. The other 97% buys coins.
 - On a sell, 3% of the ETH or stock token you receive is taken. You get the other 97%.
@@ -21,4 +21,4 @@ Every wallet has a root link for every coin. When a trade comes through your lin
 
 ## Rooting is not endorsement
 
-A coin about a person is a bet on attention, not a message from the person. Every coin shows whether the person has claimed it. Until they do, it is labelled community-created and unclaimed, and ROOTR never suggests otherwise.
+A coin about a person is a bet on attention, not a message from the person. Every coin shows whether the person has claimed it. Until they do, it is labelled community-created and unclaimed, and Rooter never suggests otherwise.

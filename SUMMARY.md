@@ -1,12 +1,12 @@
 # Table of contents
 
 * [Who are you rooting for?](README.md)
-* [Why ROOTR](why-rootr.md)
-* [How a ROOTR is born](how-a-rootr-is-born.md)
+* [Why Rooter](why-rooter.md)
+* [How a coin is born](how-a-coin-is-born.md)
 * [Rooting](rooting.md)
 * [Who gets paid](who-gets-paid.md)
 * [The Rooter Pool](the-rooter-pool.md)
-* [Claim your ROOTR](claim-your-rootr.md)
+* [Claim your coin](claim-your-coin.md)
 * [The 90 days](the-90-days.md)
 * [Root in their stock](root-in-their-stock.md)
 * [Matchups](matchups.md)
