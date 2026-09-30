@@ -1,0 +1,18 @@
+# Table of contents
+
+* [Who are you rooting for?](README.md)
+* [Why ROOTR](why-rootr.md)
+* [How a ROOTR is born](how-a-rootr-is-born.md)
+* [Rooting](rooting.md)
+* [Who gets paid](who-gets-paid.md)
+* [The Rooter Pool](the-rooter-pool.md)
+* [Claim your ROOTR](claim-your-rootr.md)
+* [The 90 days](the-90-days.md)
+* [Root in their stock](root-in-their-stock.md)
+* [Matchups](matchups.md)
+* [$ROOTR](rootr-token.md)
+* [Under the hood](under-the-hood.md)
+* [The numbers](the-numbers.md)
+* [What comes next](what-comes-next.md)
+* [Straight talk](straight-talk.md)
+* [Words](words.md)
