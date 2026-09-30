@@ -1,0 +1,61 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Rooter social artboards</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Export artboards. brand/render.js screenshots each .board by id. */
+:root{--void:#0A0B0D;--panel:#15171B;--line:#26292F;--dot:#1E2126;--bone:#F4F1EA;--mute:#9AA0AB;--rally:#FF4D00}
+body{margin:0;background:#333;display:flex;flex-direction:column;gap:40px;padding:40px;font-family:'Geist Mono',monospace}
+.board{position:relative;overflow:hidden;box-sizing:border-box;flex:none}
+.dark{background:var(--void);color:var(--bone);background-image:radial-gradient(var(--dot) 1.6px,transparent 1.8px);background-size:28px 28px}
+.light{background:var(--bone);color:var(--void)}
+.d{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.9;margin:0}
+.wm{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.045em;display:inline-block;transform:skewX(-6deg)}
+.lab{font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.chip{display:inline-flex;padding:12px 20px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:17px;letter-spacing:.12em;text-transform:uppercase}
+.chip.hot{background:var(--rally);border-color:var(--rally);color:var(--void)}
+.lock{display:flex;align-items:center;gap:14px}
+.lock img{height:52px}
+</style>
+
+<!-- 1600x900 · launch post -->
+<section id="live" class="board dark" style="width:1600px;height:900px;padding:96px 90px;display:flex;align-items:center;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:40px">
+    <span class="lab">Robinhood Chain · 4663</span>
+    <h1 class="d" style="font-size:190px">$ROOTR<br>is live<span style="color:var(--rally)">.</span></h1>
+    <div style="display:flex;gap:14px"><span class="chip">1B fixed supply</span><span class="chip">3% fee, capped</span><span class="chip hot">Liquidity locked</span></div>
+    <div class="lock"><img src="../site/assets/logo/lockup-on-dark.svg" alt="Rooter"><span class="lab" style="color:var(--mute);margin-left:18px">Root for anyone.</span></div>
+  </div>
+  <div style="position:relative;width:560px;height:560px;display:grid;place-items:center;flex:none">
+    <div style="position:absolute;inset:40px;border-radius:50%;background:var(--rally);opacity:.18;filter:blur(70px)"></div>
+    <img src="../site/assets/logo/rootbot-on-dark.svg" style="width:470px;position:relative" alt="">
+  </div>
+</section>
+
+<!-- 1600x900 · claim post -->
+<section id="claim" class="board light" style="width:1600px;height:900px;padding:80px;display:grid;grid-template-rows:auto 1fr auto">
+  <div style="display:flex;justify-content:space-between;align-items:center"><img src="../site/assets/logo/wordmark-ink.svg" style="height:36px" alt="Rooter"><span class="lab">Claim your coin</span></div>
+  <div style="display:flex;align-items:center;gap:90px">
+    <img src="../site/assets/logo/rootbot-on-light.svg" style="width:330px;flex:none" alt="">
+    <div style="display:flex;flex-direction:column;gap:36px">
+      <h1 class="d" style="font-size:128px">Someone<br>launched<br>a coin for you<span style="color:var(--rally)">.</span></h1>
+      <p style="margin:0;font-size:26px;line-height:1.5;color:#3A3834;max-width:32em">Your share is already in escrow. Prove the handle and it's yours. Nobody else can touch it. Not even us.</p>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between" class="lab"><span>Launch a coin for anyone</span><span>Root for anyone.</span></div>
+</section>
+
+<!-- 1200x630 · link preview -->
+<section id="og" class="board dark" style="width:1200px;height:630px;padding:70px;display:flex;align-items:center;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:30px">
+    <img src="../site/assets/logo/wordmark-bone.svg" style="height:42px;align-self:flex-start" alt="Rooter">
+    <h1 class="d" style="font-size:132px">Root<br>for<br>anyone<span style="color:var(--rally)">.</span></h1>
+    <span class="lab" style="color:var(--mute)">Every rooter feeds the next rooter</span>
+  </div>
+  <img src="../site/assets/logo/rootbot-on-dark.svg" style="width:400px;flex:none" alt="">
+</section>
+
+<!-- Square icon exports -->
+<section id="icon" class="board" style="width:512px;height:512px;background:transparent"><img src="../site/assets/logo/app-icon-rally.svg" style="width:512px;height:512px;display:block" alt=""></section>
+<section id="touch" class="board" style="width:180px;height:180px;background:#FF4D00"><img src="../site/assets/logo/app-icon-rally.svg" style="width:180px;height:180px;display:block" alt=""></section>
+<section id="avatar" class="board" style="width:400px;height:400px;background:transparent"><img src="../site/assets/logo/avatar.svg" style="width:400px;height:400px;display:block" alt=""></section>

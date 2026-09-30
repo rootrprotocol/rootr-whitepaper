@@ -1,0 +1,4 @@
+/* Local copies of the brand faces, for exports that must not depend on the network. */
+@font-face{font-family:'Bricolage Grotesque';font-weight:800;src:url(BricolageGrotesque-800.ttf) format('truetype')}
+@font-face{font-family:'Geist Mono';font-weight:400;src:url(GeistMono-400.ttf) format('truetype')}
+@font-face{font-family:'Geist Mono';font-weight:500;src:url(GeistMono-500.ttf) format('truetype')}

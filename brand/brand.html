@@ -1,0 +1,105 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Rooter Brand</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Rooter brand sheet. Each .page is one 1600x900 slide; render.js prints them to Rooter-Brand.pdf. */
+@page{size:1600px 900px;margin:0}
+:root{--void:#0A0B0D;--panel:#15171B;--line:#26292F;--dot:#1E2126;--bone:#F4F1EA;--mute:#9AA0AB;--dim:#5C616B;--rally:#FF4D00}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--void);color:var(--bone);font:400 17px/1.55 'Geist Mono',monospace;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:1600px;height:900px;padding:72px 80px;position:relative;overflow:hidden;page-break-after:always;break-after:page;display:flex;flex-direction:column;gap:40px;background:var(--void);background-image:radial-gradient(var(--dot) 1.4px,transparent 1.6px);background-size:24px 24px}
+.page.light{background:var(--bone);color:var(--void);background-image:none}
+.top{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.light .top{color:#5B5750}
+h1,h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;margin:0}
+h2{font-size:72px}
+.lab{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.hot{color:var(--rally)}
+.grid{display:grid;gap:20px;flex:1;min-height:0}
+.tile{border-radius:28px;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;position:relative;padding:28px}
+.tile .lab{position:absolute;left:24px;bottom:20px}
+.tile.bone{background:var(--bone);border-color:var(--bone)}
+.tile.bone .lab{color:#5B5750}
+.tile.rally{background:var(--rally);border-color:var(--rally)}
+.tile.rally .lab{color:var(--void)}
+p{margin:0;max-width:38em;color:var(--mute)}
+.light p{color:#3A3834}
+.sw{border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;gap:4px;font-size:14px}
+.sw b{font-family:'Bricolage Grotesque';font-weight:800;font-size:30px;text-transform:uppercase;letter-spacing:-.03em}
+.rule{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:1px solid var(--line)}
+.rule b{font-size:14px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.x{position:relative}
+.x::after{content:'';position:absolute;inset:12px;background:linear-gradient(to top right,transparent calc(50% - 2px),var(--rally) calc(50% - 2px),var(--rally) calc(50% + 2px),transparent calc(50% + 2px))}
+</style>
+
+<!-- 1 · Cover -->
+<section class="page">
+  <div class="top"><span>Rooter · Brand · v3</span><span>Robinhood Chain · 4663</span></div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:34px">
+      <img src="../site/assets/logo/wordmark-bone.svg" style="width:760px" alt="Rooter">
+      <span class="lab hot" style="font-size:20px">Launch a coin for anyone. Root for them.</span>
+      <p>Rootbot is the mark. The eyes are the switch: asleep while a coin's person hasn't claimed, awake once they have. One neon accent on near-black, Bricolage Grotesque for the wordmark, Geist Mono for everything else.</p>
+    </div>
+    <img src="../site/assets/logo/rootbot-on-dark.svg" style="width:440px;flex:none" alt="">
+  </div>
+</section>
+
+<!-- 2 · Logo system -->
+<section class="page">
+  <div class="top"><span>01 · Logo system</span><span>site/assets/logo</span></div>
+  <h2>One bot. Every size.</h2>
+  <div class="grid" style="grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:1fr 1fr">
+    <div class="tile" style="grid-row:span 1"><img src="../site/assets/logo/lockup-on-dark.svg" style="width:78%" alt=""><span class="lab">Lockup · on dark</span></div>
+    <div class="tile"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:52%" alt=""><span class="lab">Mark</span></div>
+    <div class="tile rally"><img src="../site/assets/logo/app-icon-rally.svg" style="width:52%" alt=""><span class="lab">App icon · rally</span></div>
+    <div class="tile bone"><img src="../site/assets/logo/lockup-on-light.svg" style="width:78%" alt=""><span class="lab">Lockup · on light</span></div>
+    <div class="tile"><img src="../site/assets/logo/avatar.svg" style="width:48%" alt=""><span class="lab">Avatar · X, Telegram</span></div>
+    <div class="tile"><div style="display:flex;align-items:flex-end;gap:26px"><img src="../site/assets/logo/favicon.svg" width="64" alt=""><img src="../site/assets/logo/favicon.svg" width="32" alt=""><img src="../site/assets/logo/favicon.svg" width="16" alt=""></div><span class="lab">Favicon · 64 / 32 / 16</span></div>
+  </div>
+</section>
+
+<!-- 3 · The switch -->
+<section class="page light">
+  <div class="top"><span>02 · The switch</span><span>Claim state</span></div>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px;color:var(--bone)">
+    <div class="tile" style="gap:26px"><img src="../site/assets/logo/rootbot-asleep.svg" style="width:46%" alt=""><span style="font-family:'Bricolage Grotesque';font-weight:800;font-size:40px;text-transform:uppercase;letter-spacing:-.03em">Unclaimed</span><span class="lab" style="position:static">Eyes shut · tips grey · 2% held in escrow</span></div>
+    <div class="tile" style="gap:26px"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:46%" alt=""><span style="font-family:'Bricolage Grotesque';font-weight:800;font-size:40px;text-transform:uppercase;letter-spacing:-.03em">Claimed</span><span class="lab hot" style="position:static">Eyes lit · tips rally · 1.5% paid direct</span></div>
+  </div>
+  <p>The site's claim switch flips Rootbot between these two faces as it moves the fee split. Use the asleep face anywhere a coin's state is unclaimed: coin pages, cards, badges. Never show a lit face on a coin whose person hasn't claimed; that would read as an endorsement.</p>
+</section>
+
+<!-- 4 · Colour and type -->
+<section class="page">
+  <div class="top"><span>03 · Colour &amp; type</span><span>One accent</span></div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;height:260px">
+    <div class="sw" style="background:var(--void);border:1px solid var(--line)"><b>Void</b>#0A0B0D · ground</div>
+    <div class="sw" style="background:var(--panel);border:1px solid var(--line)"><b>Panel</b>#15171B · cards</div>
+    <div class="sw" style="background:var(--line)"><b>Line</b>#26292F · rules</div>
+    <div class="sw" style="background:var(--mute);color:var(--void)"><b>Mute</b>#9AA0AB · secondary</div>
+    <div class="sw" style="background:var(--rally);color:var(--void)"><b>Rally</b>#FF4D00 · the accent</div>
+    <div class="sw" style="background:var(--bone);color:var(--void)"><b>Bone</b>#F4F1EA · type, light</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:40px;flex:1;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:12px"><span class="lab">Display · Bricolage Grotesque 800 · −0.04em · uppercase</span><h1 style="font-size:150px">Root for<br>anyone.</h1></div>
+    <div style="display:flex;flex-direction:column;gap:12px"><span class="lab">Text &amp; numbers · Geist Mono 400/500</span><p style="color:var(--bone);font-size:22px">3% of every trade. 1,000,000,000 fixed supply. $10,000 opening valuation. 90 days to claim.</p><span class="lab">Wordmark only: skewed 6° forward, −0.045em</span></div>
+  </div>
+</section>
+
+<!-- 5 · Rules -->
+<section class="page">
+  <div class="top"><span>04 · Rules</span><span>Keep it loud, keep it one</span></div>
+  <h2>Do. Don't.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;height:260px">
+    <div class="tile"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:52%" alt=""><span class="lab">Do · as drawn</span></div>
+    <div class="tile x"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:52%;transform:scaleX(1.35)" alt=""><span class="lab">Don't stretch</span></div>
+    <div class="tile x"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:52%;filter:hue-rotate(120deg)" alt=""><span class="lab">Don't recolour the accent</span></div>
+    <div class="tile x" style="background:#6B7280"><img src="../site/assets/logo/rootbot-on-dark.svg" style="width:52%" alt=""><span class="lab" style="color:var(--bone)">Don't place on mid-tones</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+    <div class="rule"><b>Clear space</b><p>Keep one antenna-height of empty space around the mark, and the height of the O around the wordmark.</p></div>
+    <div class="rule"><b>Minimum size</b><p>Full mark down to 32px. Below that, use favicon.svg, which drops the mouth and thickens the roots.</p></div>
+    <div class="rule"><b>One accent</b><p>Rally is the only accent. It marks the antenna, the eyes, the root tips, and one call to action per screen.</p></div>
+  </div>
+</section>

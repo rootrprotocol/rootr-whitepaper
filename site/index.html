@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rooter</title>
+<meta name="description" content="Launch a coin for anyone. Root for them. The person gets paid, the launcher gets paid when they show up, and the rooters get paid too. On Robinhood Chain.">
+<meta name="theme-color" content="#0A0B0D">
+<meta property="og:title" content="Rooter · Root for anyone.">
+<meta property="og:description" content="Launch a coin for anyone. Every rooter feeds the next rooter.">
+<meta property="og:image" content="assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/app-icon-rally.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one dark stage with a dotted grid, broken by two loud bands (rally, bone).
+   The claim switch is the page's one moving idea; everything else stays still. */
+:root{
+  --void:#0A0B0D; --panel:#15171B; --line:#26292F; --dot:#2A2D33;
+  --bone:#F4F1EA; --mute:#9AA0AB; --dim:#5C616B;
+  --rally:#FF4D00; --rally-ink:#0A0B0D;
+  /* the crowd: every coin gets one of these; rally stays the brand's own */
+  --volt:#C8FF00; --pink:#FF2D8A; --cyan:#00E5FF;
+  --display:'Bricolage Grotesque', Impact, 'Arial Black', sans-serif;
+  --mono:'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gutter:clamp(16px, 4.4vw, 64px);
+  --r-lg:28px; --r-md:22px; --r-sm:14px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--void)}
+body{margin:0;background:var(--void);color:var(--bone);font:400 16px/1.6 var(--mono);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img,svg{max-width:100%}
+::selection{background:var(--rally);color:var(--rally-ink)}
+:focus-visible{outline:2px solid var(--rally);outline-offset:3px;border-radius:6px}
+
+.wrap{padding-inline:var(--gutter)}
+.dots{background-image:radial-gradient(var(--dot) 1.4px, transparent 1.6px);background-size:24px 24px}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.eyebrow.hot{color:var(--rally)}
+.display{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.04em;line-height:.92;margin:0;text-wrap:balance}
+.h1{font-size:clamp(64px, 10.3vw, 148px)}
+.h2{font-size:clamp(44px, 5.8vw, 84px)}
+.h3{font-size:clamp(30px, 3vw, 44px)}
+.lede{font-size:clamp(16px, 1.4vw, 20px);line-height:1.55;max-width:34em;margin:0}
+.muted{color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+.wordmark{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.9;display:inline-block;transform:skewX(-6deg)}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;text-decoration:none;border:1px solid var(--line);color:var(--bone);background:none}
+.pill.hot{border-color:var(--rally);color:var(--rally)}
+.pill.solid{background:var(--rally);border-color:var(--rally);color:var(--rally-ink)}
+.pill.bone{background:var(--bone);border-color:var(--bone);color:var(--void)}
+.pill.ink{background:var(--void);border-color:var(--void);color:var(--bone)}
+.pill.big{padding:18px 30px;font-size:14px}
+a.pill{transition:transform .15s ease, background-color .15s ease}
+a.pill:hover{transform:translateY(-2px)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,77,0,.6)}80%,100%{box-shadow:0 0 0 8px rgba(255,77,0,0)}}
+
+.section{padding-block:clamp(64px, 8vw, 112px);border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(28px, 4vw, 48px)}
+.section-head > div{display:flex;flex-direction:column;gap:14px;min-width:0}
+.section-head .aside{max-width:380px;font-size:16px;line-height:1.55;color:var(--mute);margin:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg)}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);background:rgba(10,11,13,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:40px;height:40px}
+.brand .wordmark{font-size:28px}
+.nav-links{display:flex;gap:30px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.nav-links a{text-decoration:none;color:var(--bone);transition:color .15s}
+.nav-links a:hover{color:var(--rally)}
+.nav-links a.docs{color:var(--mute)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+@media (max-width:1080px){.nav-links{display:none}}
+@media (max-width:560px){.nav .pill.hot{display:none}.brand .wordmark{font-size:24px}}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:40px;padding-block:clamp(40px, 6vw, 80px) clamp(48px, 6vw, 72px)}
+.hero-copy{display:flex;flex-direction:column;gap:28px;min-width:0}
+.hero-stage{position:relative;aspect-ratio:1;max-width:560px;width:100%;justify-self:center;display:grid;place-items:center}
+.hero-stage .halo{position:absolute;inset:8%;border-radius:50%;background:var(--rally);opacity:.16;filter:blur(60px)}
+.hero-stage .ring{position:absolute;inset:10%;border-radius:50%;border:1px solid var(--line)}
+.hero-stage .bot{width:72%;position:relative}
+.sticker{position:absolute}
+.sticker.a{top:9%;right:2%;transform:rotate(8deg)}
+.sticker.b{bottom:12%;left:0;transform:rotate(-6deg)}
+.sticker.c{top:46%;right:-2%;transform:rotate(-4deg)}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-stage{order:-1;max-width:340px}
+}
+
+/* Launch preview */
+.launch{display:flex;flex-direction:column;gap:14px;max-width:620px}
+.launch-row{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;background:var(--panel);padding:6px;align-items:center;transition:border-color .15s}
+.launch-row:focus-within{border-color:var(--rally)}
+.launch-row select,.launch-row input{background:none;border:0;color:var(--bone);font:500 15px var(--mono);outline:none;min-width:0}
+.launch-row select{padding:10px 8px 10px 14px;color:var(--mute);border-right:1px solid var(--line);cursor:pointer;flex:none;max-width:40%}
+.launch-row select option{background:var(--panel);color:var(--bone)}
+.launch-row .at{padding-left:14px;color:var(--mute)}
+.launch-row input{flex:1;padding:10px 6px 10px 2px}
+.launch-row .pill{flex:none}
+.coin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:16px 18px;border-radius:var(--r-md);background:var(--panel);border:1px solid var(--line)}
+.coin .face{width:48px;height:48px;border-radius:14px;background:var(--void);display:grid;place-items:center;grid-row:span 2}
+.coin .face svg{width:36px;height:36px}
+.coin .name{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
+.coin .meta{font-size:12px;letter-spacing:.06em;color:var(--mute);grid-column:2 / 4}
+.coin .state{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.coin dl{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:10px;margin:10px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.coin dt{font-size:10px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.coin dd{margin:2px 0 0;font-size:14px;font-variant-numeric:tabular-nums}
+.note{font-size:12px;color:var(--dim);letter-spacing:.02em;margin:0}
+@media (max-width:560px){.coin dl{grid-template-columns:repeat(2, minmax(0,1fr))}.launch-row{flex-wrap:wrap;border-radius:22px}.launch-row input{flex:1 1 40%}.launch-row .pill{flex:1 1 100%;justify-content:center;margin-top:6px;padding:14px}.sticker.c{display:none}}
+
+/* Marquees */
+.ticker{height:64px;background:var(--rally);color:var(--rally-ink);overflow:hidden;display:flex;align-items:center;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.track{display:flex;gap:40px;padding-right:40px;white-space:nowrap;flex:none;animation:slide 38s linear infinite}
+.handles{height:96px;overflow:hidden;display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.handles .track{align-items:center;gap:12px;padding-right:12px;animation-duration:60s;animation-direction:reverse}
+.handles .h{font-size:15px;padding:10px 18px;border-radius:999px;background:var(--panel);border:1px solid var(--line);letter-spacing:.06em}
+.handles .t{font-size:11px;letter-spacing:.12em;color:var(--rally);padding:0 6px}
+@keyframes slide{to{transform:translateX(-100%)}}
+
+/* Three moves */
+.moves{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:20px}
+.move{padding:clamp(24px, 2.6vw, 36px);display:flex;flex-direction:column;gap:20px;min-width:0}
+.move-top{display:flex;justify-content:space-between;align-items:center}
+.move .n{font-family:var(--display);font-weight:800;font-size:56px;line-height:.9;color:var(--rally);letter-spacing:-.02em}
+.move .ic{width:64px;height:64px;border-radius:18px;background:var(--void);display:grid;place-items:center}
+.move .ic svg{width:38px;height:38px}
+.move p{margin:0;color:var(--mute);font-size:16px;line-height:1.55}
+@media (max-width:900px){.moves{grid-template-columns:1fr}}
+
+/* The switch */
+.switchboard{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px}
+.sb-left{padding:clamp(24px, 3vw, 40px);display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:28px;text-align:center}
+.sb-left .bot{width:min(260px, 70%)}
+.sb-left .caption{font-size:14px;color:var(--mute);max-width:26em;margin:0;min-height:4.6em}
+.toggle{appearance:none;border:0;padding:0;cursor:pointer;background:none;display:flex;align-items:center;gap:16px;font:500 13px var(--mono);letter-spacing:.12em;color:var(--mute)}
+.toggle .lbl{transition:color .2s}
+.toggle[aria-checked="false"] .lbl.off,.toggle[aria-checked="true"] .lbl.on{color:var(--bone)}
+.toggle .trk{width:104px;height:56px;border-radius:999px;background:var(--void);border:1px solid var(--line);position:relative;transition:background-color .25s ease, border-color .25s}
+.toggle .knob{position:absolute;top:5px;left:5px;width:44px;height:44px;border-radius:50%;background:var(--dim);transition:transform .35s cubic-bezier(.3,1.5,.5,1), background-color .25s}
+.toggle[aria-checked="true"] .trk{background:var(--rally);border-color:var(--rally)}
+.toggle[aria-checked="true"] .knob{transform:translateX(48px);background:var(--bone)}
+.sb-right{padding:clamp(24px, 3vw, 40px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.bars{display:flex;flex-direction:column;gap:14px}
+.bar{display:grid;grid-template-columns:140px minmax(0,1fr) 64px;align-items:center;gap:16px}
+.bar .who{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.bar .who small{display:block;font-size:11px;letter-spacing:.04em;color:var(--dim);text-transform:none}
+.bar .rail{height:34px;border-radius:8px;background:var(--void);padding:4px}
+.bar .fill{height:100%;border-radius:5px;background:var(--bone);width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar.person .fill{background:var(--rally)}
+.bar .pct{text-align:right;font-size:18px;font-variant-numeric:tabular-nums}
+.bar.zero .who{color:var(--dim)}
+.total{display:flex;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.calc{margin-top:6px;padding:20px;border-radius:var(--r-md);background:var(--void);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.calc-in{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:13px;color:var(--mute)}
+.calc-in label{display:flex;align-items:center;gap:10px}
+.field{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--panel);transition:border-color .15s}
+.field:focus-within{border-color:var(--rally)}
+.field input,.field select{background:none;border:0;color:var(--bone);font:500 15px var(--mono);padding:8px 10px;outline:none;width:7.5em}
+.field select{width:auto;cursor:pointer}
+.field select option{background:var(--panel)}
+.check{cursor:pointer}
+.check input{accent-color:var(--rally);width:16px;height:16px}
+.calc table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.calc td{padding:7px 0;border-top:1px solid var(--line)}
+.calc td:last-child{text-align:right;white-space:nowrap}
+.calc tr.sum td{color:var(--mute)}
+@media (max-width:960px){.switchboard{grid-template-columns:1fr}}
+@media (max-width:520px){.bar{grid-template-columns:92px minmax(0,1fr) 52px;gap:10px}.bar .who small{display:none}}
+
+/* Bot states */
+.rb .eyes-asleep{opacity:0;transition:opacity .25s}
+.rb .eyes-awake{transition:opacity .25s}
+.rb.asleep .eyes-awake{opacity:0}
+.rb.asleep .eyes-asleep{opacity:1}
+.rb .tip{transition:fill .25s}
+.rb.asleep .tip{fill:var(--dim)}
+.rb .look{transition:transform .25s ease-out}
+.rb .blink{transform-box:fill-box;transform-origin:center;animation:blink 5.5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.rb .bob{animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4px)}}
+
+/* Rooting */
+.three{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));border-top:1px solid var(--line)}
+.three > div{padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.three > div + div{padding-left:32px;border-left:1px solid var(--line)}
+.three .k{font-family:var(--display);font-weight:800;font-size:clamp(40px, 4vw, 56px);line-height:.9;letter-spacing:-.03em;color:var(--rally)}
+.three .k small{font-size:.42em;letter-spacing:0;color:var(--bone);margin-left:6px}
+.three p{margin:0;color:var(--mute);font-size:15px;line-height:1.6}
+pre.code{white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0 0;padding:16px 18px;border-radius:var(--r-sm);background:var(--panel);border:1px solid var(--line);font:400 13px/1.7 var(--mono);color:var(--bone);overflow-x:auto}
+pre.code .c{color:var(--dim)}
+@media (max-width:900px){.three{grid-template-columns:1fr}.three > div,.three > div + div{padding:28px 0;border-left:0}.three > div + div{border-top:1px solid var(--line)}}
+
+/* Claim (bone) */
+.claim{background:var(--bone);color:var(--void);padding-block:clamp(64px, 8vw, 112px)}
+.claim .eyebrow{color:#5B5750}
+.claim-grid{display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr);gap:clamp(24px, 5vw, 72px);align-items:center}
+.claim-grid .bot{width:100%;max-width:300px;justify-self:center}
+.claim-copy{display:flex;flex-direction:column;gap:24px;min-width:0}
+.claim-copy .lede{color:#3A3834}
+.proofs{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px}
+.proof{padding:20px;border-radius:var(--r-md);border:1.5px solid var(--void);display:flex;flex-direction:column;gap:8px}
+.proof b{font-family:var(--display);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:-.03em;line-height:1}
+.proof span{font-size:14px;line-height:1.5;color:#3A3834}
+.window{margin-top:clamp(40px, 6vw, 72px);display:flex;flex-direction:column;gap:16px}
+.window-track{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,.55fr);align-items:center;gap:0}
+.seg{height:52px;border-radius:999px 0 0 999px;background:var(--void);color:var(--bone);display:flex;align-items:center;padding:0 22px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;overflow:hidden;white-space:nowrap}
+.seg.after{border-radius:0 999px 999px 0;background:transparent;color:var(--void);border:1.5px dashed var(--void);border-left:0}
+.sweep{height:72px;padding:0 20px;display:flex;align-items:center;gap:10px;background:var(--rally);color:var(--rally-ink);border-radius:18px;font:500 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 0 var(--void)}
+.window-labels{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px;font-size:14px;line-height:1.5;color:#3A3834}
+.window-labels b{display:block;color:var(--void);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin-bottom:4px}
+.vs{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px;margin-top:8px}
+.vs > div{padding:18px 20px;border-radius:var(--r-md);font-size:14px;line-height:1.5}
+.vs .them{background:#E6E2D8;color:#5B5750}
+.vs .us{background:var(--void);color:var(--bone)}
+.vs b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.vs .us b{color:var(--rally)}
+@media (max-width:900px){.claim-grid{grid-template-columns:1fr}.claim-grid .bot{max-width:200px}}
+@media (max-width:640px){
+  .proofs,.vs,.window-labels{grid-template-columns:1fr}
+  .window-track{grid-template-columns:1fr}
+  .seg,.seg.after{border-radius:22px;border:1.5px dashed var(--void);white-space:normal;height:auto;min-height:52px;padding:14px 20px;line-height:1.4}
+  .seg:not(.after){border-style:solid}
+  .sweep{justify-self:start;margin-block:10px}
+}
+
+/* Stock */
+.stock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.stock .card{padding:clamp(24px, 3vw, 40px);display:flex;flex-direction:column;gap:18px}
+.quote-demo{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.qrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-radius:var(--r-sm);background:var(--void);border:1px solid var(--line);font-size:14px}
+.qrow .tag{font-size:11px;letter-spacing:.12em;color:var(--rally);text-transform:uppercase}
+.fine{font-size:12px;line-height:1.55;color:var(--dim);margin:0}
+@media (max-width:900px){.stock{grid-template-columns:1fr}}
+
+/* Straight talk */
+.talk-cols{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:0 56px}
+.talk-cols h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin:0 0 6px}
+.talk-cols .cant h3{color:var(--rally)}
+.talk-cols .can h3{color:var(--mute)}
+.row{display:flex;flex-direction:column;gap:10px;padding:26px 0;border-top:1px solid var(--line)}
+.row b{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:.95;font-size:clamp(26px, 2.6vw, 36px)}
+.row span{font-size:15px;line-height:1.55;color:var(--mute)}
+@media (max-width:900px){.talk-cols{grid-template-columns:1fr}.talk-cols .can{margin-top:40px}}
+
+/* Token */
+.token{padding:clamp(28px, 4vw, 56px);border-radius:36px;display:flex;flex-direction:column;gap:36px}
+.token-head{display:flex;justify-content:space-between;align-items:center;gap:32px}
+.token-head > div{display:flex;flex-direction:column;gap:14px;min-width:0}
+.coin-medal{width:clamp(140px, 16vw, 220px);aspect-ratio:1;border-radius:50%;background:var(--void);border:8px solid var(--rally);display:grid;place-items:center;flex:none}
+.coin-medal svg{width:64%}
+.stats{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:16px}
+.stat{padding:24px;border-radius:var(--r-md);background:var(--void);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;min-width:0}
+.stat b{font-family:var(--display);font-weight:800;font-size:clamp(40px, 4vw, 56px);line-height:.92;letter-spacing:-.02em;color:var(--rally)}
+.stat span{font-size:12px;letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.uses{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:0 24px}
+.uses div{padding-top:16px;border-top:1px solid var(--line);font-size:14px;line-height:1.55;color:var(--mute)}
+.uses b{display:block;color:var(--bone);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:13px;margin-bottom:6px}
+.warn{padding:16px 20px;border-radius:var(--r-sm);border:1px solid var(--rally);color:var(--bone);font-size:14px;line-height:1.55}
+.warn b{color:var(--rally);font-weight:500}
+@media (max-width:900px){.stats,.uses{grid-template-columns:repeat(2, minmax(0,1fr))}.uses{gap:20px 24px}.token-head{flex-direction:column-reverse;align-items:flex-start}}
+
+/* Order of things */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5, minmax(0,1fr));gap:12px}
+.steps li{padding:22px;border-radius:var(--r-md);background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0}
+.steps .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.steps .n{font-family:var(--display);font-weight:800;font-size:40px;line-height:.9;color:var(--dim)}
+.steps .s{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.steps li.now{border-color:var(--rally)}
+.steps li.now .n{color:var(--rally)}
+.steps li.now .s{border-color:var(--rally);color:var(--rally)}
+.steps b{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.03em;font-size:22px;line-height:1}
+.steps p{margin:0;font-size:13px;line-height:1.55;color:var(--mute)}
+.never{margin-top:24px;font-size:15px;color:var(--mute);max-width:52em}
+.never b{color:var(--bone);font-weight:500}
+@media (max-width:1100px){.steps{grid-template-columns:repeat(2, minmax(0,1fr))}.steps li:last-child{grid-column:1 / -1}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* CTA + footer */
+.cta{margin-bottom:clamp(64px, 8vw, 96px);padding:clamp(36px, 5vw, 72px) clamp(24px, 4.4vw, 64px);border-radius:36px;background:var(--rally);color:var(--rally-ink);display:flex;align-items:center;justify-content:space-between;gap:32px;overflow:hidden}
+.cta > div{display:flex;flex-direction:column;gap:24px;min-width:0}
+.cta .btns{display:flex;gap:12px;flex-wrap:wrap}
+.cta .pill.line{border-color:var(--void);color:var(--void)}
+.cta .bot{width:clamp(160px, 22vw, 300px);flex:none}
+@media (max-width:760px){.cta{flex-direction:column;align-items:flex-start}.cta .bot{align-self:flex-end;width:160px;margin-top:-20px}}
+footer{border-top:1px solid var(--line);padding-block:40px 48px;display:flex;flex-direction:column;gap:28px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.foot-links a{color:var(--mute);text-decoration:none}
+.foot-links a:hover{color:var(--rally)}
+.legal{font-size:12px;line-height:1.65;color:var(--dim);max-width:78em;margin:0}
+
+/* Motion */
+.hero .w{display:inline-block;animation:slam .7s cubic-bezier(.2,1.4,.4,1) both}
+.hero .w:nth-child(1){animation-delay:.05s}.hero .w:nth-child(3){animation-delay:.16s}.hero .w:nth-child(5){animation-delay:.27s}
+@keyframes slam{from{transform:translateY(40%) skewY(6deg) scale(.9);opacity:0}to{transform:none;opacity:1}}
+.hero-stage .bot{animation:drop 1s .25s cubic-bezier(.2,1.5,.45,1) both}
+@keyframes drop{from{transform:translateY(-30%) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+.sticker{animation:pop .5s cubic-bezier(.2,1.8,.5,1) both}
+.sticker.a{animation-delay:.9s}.sticker.b{animation-delay:1.05s}.sticker.c{animation-delay:1.2s}
+@keyframes pop{from{scale:0}to{scale:1}}
+.hero-stage .halo{animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.26;transform:scale(1.06)}}
+.orbit{position:absolute;inset:6%;border-radius:50%;animation:spin 36s linear infinite}
+.orbit .chip{position:absolute;left:50%;top:50%;width:0;height:0}
+.orbit .chip span{position:absolute;translate:-50% -50%;animation:spin 36s linear infinite reverse;display:inline-flex;padding:7px 12px;border-radius:999px;font:500 11px var(--mono);letter-spacing:.08em;color:var(--void);white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rb .tip{animation:tipPulse 2.4s ease-in-out infinite}
+@keyframes tipPulse{50%{filter:brightness(1.4) drop-shadow(0 0 6px currentColor)}}
+.reveal{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal:not(.in){transform:translateY(36px)}
+.shuffle-btn{background:var(--panel);border:1px solid var(--line);color:var(--bone);cursor:pointer}
+.shuffle-btn:hover{border-color:var(--volt);color:var(--volt)}
+.coin{--c:var(--rally);transition:border-color .3s}
+.coin .face{background:var(--c);transition:background-color .3s}
+.coin .name{color:var(--c);transition:color .3s}
+.coin.dealt{animation:deal .55s cubic-bezier(.2,1.2,.4,1)}
+@keyframes deal{0%{transform:perspective(800px) rotateY(0)}45%{transform:perspective(800px) rotateY(90deg) scale(.96)}100%{transform:perspective(800px) rotateY(0)}}
+a.pill:hover,button.pill:hover{transform:translateY(-2px) rotate(-1.5deg)}
+button.pill{cursor:pointer;transition:transform .15s ease}
+.handles .h{border-color:var(--c, var(--line))}
+.handles .t{color:var(--c, var(--rally))}
+
+/* Live feed */
+.crowd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px;align-items:stretch}
+.feed{padding:24px;display:flex;flex-direction:column;gap:10px;height:420px;overflow:hidden;position:relative}
+.feed::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,var(--panel));pointer-events:none}
+.feed-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.tx{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--void);border:1px solid var(--line);font-size:13px;animation:txIn .5s cubic-bezier(.2,1.3,.4,1) both}
+.tx .av{width:34px;height:34px;border-radius:10px;background:var(--c);display:grid;place-items:center;font:800 13px var(--display);color:var(--void)}
+.tx .what{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tx .what b{color:var(--c);font-weight:500}
+.tx .amt{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+@keyframes txIn{from{transform:translateY(-16px) scale(.96);opacity:0}}
+.board-big{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;background:var(--rally);border-color:var(--rally);color:var(--void)}
+.board-big .display{font-size:clamp(40px,5vw,72px)}
+.counters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.counters div{padding:16px 18px;border-radius:16px;background:var(--void);color:var(--bone)}
+.counters b{display:block;font:800 clamp(28px,3vw,40px)/1 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.counters span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:900px){.crowd{grid-template-columns:1fr}.feed{height:360px}}
+
+/* Matchup */
+.match{padding:clamp(24px,3vw,44px);display:flex;flex-direction:column;gap:28px}
+.fighters{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px;align-items:center}
+.fighter{display:flex;align-items:center;gap:16px;min-width:0}
+.fighter.r{flex-direction:row-reverse;text-align:right}
+.fighter .ava{width:72px;height:72px;border-radius:22px;background:var(--c);display:grid;place-items:center;flex:none;animation:bounce 1.8s ease-in-out infinite}
+.fighter.r .ava{animation-delay:.9s}
+.fighter .ava svg{width:52px}
+@keyframes bounce{50%{transform:translateY(-6px) rotate(-3deg)}}
+.fighter b{display:block;font:800 clamp(22px,2.4vw,34px)/1 var(--display);text-transform:uppercase;letter-spacing:-.03em;color:var(--c);overflow-wrap:anywhere}
+.fighter span{font-size:12px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+.vsx{font:800 clamp(34px,4vw,56px)/1 var(--display);color:var(--bone);transform:skewX(-6deg)}
+.race{display:flex;height:44px;border-radius:12px;overflow:hidden;background:var(--void);border:1px solid var(--line)}
+.race div{height:100%;transition:flex-grow 1s cubic-bezier(.3,1.2,.4,1);display:flex;align-items:center;padding:0 14px;font:500 13px var(--mono);color:var(--void);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
+.race .l{background:var(--pink)}
+.race .rr{background:var(--cyan);justify-content:flex-end}
+.match-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--mute)}
+.clock{display:flex;gap:8px}
+.clock span{min-width:58px;padding:10px 8px;border-radius:12px;background:var(--void);border:1px solid var(--line);text-align:center;font:800 24px/1 var(--display);color:var(--bone);font-variant-numeric:tabular-nums}
+.clock small{display:block;font:400 10px var(--mono);letter-spacing:.1em;color:var(--dim);margin-top:4px}
+@media (max-width:640px){.fighters{grid-template-columns:1fr;text-align:center}.fighter,.fighter.r{flex-direction:column;text-align:center}.vsx{justify-self:center}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<header class="nav wrap">
+  <a class="brand" href="#top" aria-label="Rooter home"><span data-bot="mini"></span><span class="wordmark">Rooter</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#how">Rooting</a>
+    <a href="#paid">Who gets paid</a>
+    <a href="#claim">Claim your coin</a>
+    <a href="#talk">Straight talk</a>
+    <a href="#token">$ROOTR</a>
+    <a class="docs" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Docs</a>
+  </nav>
+  <div class="nav-cta">
+    <span class="pill hot"><span class="live-dot"></span>$ROOTR · Live</span>
+    <a class="pill solid" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Whitepaper</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero wrap dots" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <span class="pill" style="align-self:flex-start;color:var(--mute)">Robinhood Chain · 4663</span>
+    <h1 id="hero-title" class="display h1"><span class="w">Root</span><br><span class="w">for</span><br><span class="w">anyone<span style="color:var(--rally)">.</span></span></h1>
+    <p class="lede">Paste a handle and a coin exists, with liquidity nobody can ever pull. People root for the person by trading it. The person earns from every trade. And the rooters earn too. Every rooter feeds the next rooter.</p>
+
+    <form class="launch" id="launch" autocomplete="off">
+      <label for="handle" class="eyebrow">Try it · paste a handle</label>
+      <div class="launch-row">
+        <select id="platform" aria-label="Platform">
+          <option>X</option><option>YouTube</option><option>TikTok</option><option>Instagram</option>
+          <option>Snapchat</option><option>Twitch</option><option>Kick</option><option>Farcaster</option>
+        </select>
+        <span class="at" aria-hidden="true">@</span>
+        <input id="handle" name="handle" value="your_gm_guy" maxlength="30" spellcheck="false">
+        <button class="pill solid" type="submit">Root them</button>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="pill shuffle-btn" type="button" id="shuffle">↻ Shuffle a coin</button><span class="note">Deals a random person, platform and colour.</span>
+      </div>
+      <div class="coin" aria-live="polite">
+        <div class="face" data-bot="mini"></div>
+        <div class="name" id="coin-name">$YOURGM</div>
+        <span class="state" id="coin-state">Unclaimed</span>
+        <div class="meta" id="coin-meta">A coin for @your_gm_guy on X · community-created</div>
+        <dl>
+          <div><dt>Supply</dt><dd>1,000,000,000</dd></div>
+          <div><dt>Opens at</dt><dd>$10,000</dd></div>
+          <div><dt>Liquidity</dt><dd>Locked</dd></div>
+          <div><dt>Fee</dt><dd>3%, capped</dd></div>
+        </dl>
+      </div>
+      <p class="note">Preview only. $ROOTR is live on Pons. The Rooter protocol launches after its audit.</p>
+    </form>
+  </div>
+
+  <div class="hero-stage" aria-hidden="true">
+    <div class="halo"></div><div class="ring"></div><div class="orbit" id="orbit"></div>
+    <div class="bot" data-bot="hero"></div>
+    <span class="sticker a pill bone">GM @YOU</span>
+    <span class="sticker b pill solid">+1 Rooter</span>
+  </div>
+</section>
+
+<div class="ticker" aria-label="Key facts">
+  <div class="track"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
+  <div class="track" aria-hidden="true"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
+</div>
+
+<div class="handles" aria-hidden="true">
+  <div class="track" id="handles-a"></div><div class="track" id="handles-b"></div>
+</div>
+
+<section id="crowd" class="section wrap reveal" aria-labelledby="crowd-title" style="border-top:0">
+  <div class="crowd">
+    <div class="card feed" aria-label="Simulated rooting feed">
+      <div class="feed-head"><span class="eyebrow hot"><span class="live-dot" style="display:inline-block;margin-right:8px"></span>Rooting right now</span><span class="eyebrow" style="color:var(--dim)">Simulated</span></div>
+      <div id="feed" style="display:flex;flex-direction:column;gap:10px"></div>
+    </div>
+    <div class="card board-big">
+      <div style="display:flex;flex-direction:column;gap:14px"><span class="eyebrow" style="color:var(--void)">The crowd makes the market</span><h2 id="crowd-title" class="display">Attention is made by crowds.<br>Pay the crowd.</h2></div>
+      <div class="counters" aria-label="Simulated totals for this preview">
+        <div><b id="c-trades">0</b><span>Trades in this preview</span></div>
+        <div><b id="c-pool">0.000</b><span>ETH to Rooter Pools</span></div>
+        <div><b id="c-person">0.000</b><span>ETH held for people</span></div>
+        <div><b id="c-links">0.000</b><span>ETH to root links</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section wrap reveal" aria-labelledby="how-title">
+  <div class="section-head">
+    <div><span class="eyebrow">How rooting works</span><h2 id="how-title" class="display h2">Three moves.<br>Zero trust needed.</h2></div>
+    <p class="aside">The contracts do the work. The pool that opens is the pool that trades forever.</p>
+  </div>
+  <div class="moves">
+    <article class="card move">
+      <div class="move-top"><span class="n">01</span><span class="ic" data-bot="mini"></span></div>
+      <h3 class="display h3">Launch</h3>
+      <p>Paste a handle from X, YouTube, TikTok, Instagram, Snapchat, Twitch, Kick or Farcaster. A coin is born with 1B supply in a pool that opens at $10,000. The liquidity is locked in a contract with no withdraw function.</p>
+    </article>
+    <article class="card move">
+      <div class="move-top"><span class="n" style="color:var(--volt)">02</span><span class="ic" data-bot="mini"></span></div>
+      <h3 class="display h3">Root</h3>
+      <p>Buy it, hold it, bring someone to it. Every trade pays a flat 3%, taken inside the swap. Holders earn from the coin's Rooter Pool by balance and by time.</p>
+    </article>
+    <article class="card move">
+      <div class="move-top"><span class="n" style="color:var(--cyan)">03</span><span class="ic" data-bot="mini-asleep" id="claim-ic"></span></div>
+      <h3 class="display h3">Claim</h3>
+      <p>The person proves the handle and everything held for them unlocks. Only they can take it. Unclaimed after 90 days, it goes to the holders instead of a burn.</p>
+    </article>
+  </div>
+</section>
+
+<section id="paid" class="section wrap reveal" aria-labelledby="paid-title">
+  <div class="section-head">
+    <div><span class="eyebrow">Who gets paid · the switch</span><h2 id="paid-title" class="display h2">One claim<br>flips the split.</h2></div>
+    <p class="aside">The trader always pays 3%. What changes is where it goes, and it changes in the block the person claims.</p>
+  </div>
+
+  <div class="switchboard">
+    <div class="card sb-left dots">
+      <div class="bot rb-wrap" data-bot="switch"></div>
+      <button class="toggle" id="claim-switch" role="switch" aria-checked="false" aria-label="Person has claimed">
+        <span class="lbl off">Unclaimed</span><span class="trk"><span class="knob"></span></span><span class="lbl on">Claimed</span>
+      </button>
+      <p class="caption" id="switch-caption"></p>
+    </div>
+
+    <div class="card sb-right">
+      <span class="eyebrow hot" id="split-title">Before the person claims</span>
+      <div class="bars">
+        <div class="bar person"><span class="who">The person<small id="w-person">held in escrow</small></span><div class="rail"><div class="fill" data-k="person"></div></div><span class="pct" data-p="person">2.0%</span></div>
+        <div class="bar" data-row="launcher"><span class="who">The launcher<small id="w-launcher">nothing until they show</small></span><div class="rail"><div class="fill" data-k="launcher"></div></div><span class="pct" data-p="launcher">0.0%</span></div>
+        <div class="bar"><span class="who">The rooters<small>into the Rooter Pool</small></span><div class="rail"><div class="fill" data-k="pool"></div></div><span class="pct" data-p="pool">0.5%</span></div>
+        <div class="bar"><span class="who">The protocol<small>incl. up to 0.25% root link</small></span><div class="rail"><div class="fill" data-k="protocol"></div></div><span class="pct" data-p="protocol">0.5%</span></div>
+      </div>
+      <div class="total"><span>Every trade</span><span class="num">3.0%</span></div>
+
+      <div class="calc">
+        <div class="calc-in">
+          <label for="amt">A buy of</label>
+          <span class="field"><input id="amt" type="number" inputmode="decimal" min="0" step="0.1" value="1"><select id="quote" aria-label="Quote asset"><option>ETH</option><option>TSLA</option><option>HOOD</option></select></span>
+          <label class="check" for="via"><input type="checkbox" id="via" checked> through a root link</label>
+        </div>
+        <table aria-label="Where the trade goes"><tbody id="calc-body"></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rooting" class="section wrap reveal" aria-labelledby="root-title">
+  <div class="section-head">
+    <div><span class="eyebrow">Rooting</span><h2 id="root-title" class="display h2">Buy it. Hold it.<br>Bring someone.</h2></div>
+    <p class="aside">All three pay. Nobody stakes, locks or registers anything.</p>
+  </div>
+  <div class="three">
+    <div>
+      <span class="k">97%<small>buys coins</small></span>
+      <p>You trade against the coin's locked pool. 3% of the quote side is taken before the swap runs. The pool charges no other fee, so 3% is the whole cost.</p>
+    </div>
+    <div>
+      <span class="k" style="color:var(--volt)">0.5%<small>to holders</small></span>
+      <p>Half a point of every trade goes to the coin's Rooter Pool, paid by how much you held and for how long. Hold through a quiet month and you earn from every trade in it.</p>
+      <pre class="code"><span class="c">// settled before any balance changes</span>
+owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
+    </div>
+    <div>
+      <span class="k" style="color:var(--pink)">0.25%<small>to your link</small></span>
+      <p>Every wallet has a root link for every coin. A trade through yours pays you a quarter point of it, in that transaction. It comes out of the protocol's share, not the person's or the rooters'.</p>
+    </div>
+  </div>
+</section>
+
+<section id="claim" class="claim wrap" aria-labelledby="claim-title">
+  <div class="claim-grid">
+    <div class="bot" data-bot="claim"></div>
+    <div class="claim-copy">
+      <span class="eyebrow">Claim your coin</span>
+      <h2 id="claim-title" class="display h2">Someone launched<br>a coin for you.</h2>
+      <p class="lede">Your share is already in escrow under your account. Prove the handle and it's yours. Nobody else can touch it. Not even us.</p>
+      <div class="proofs">
+        <div class="proof"><b>Bio code</b><span>Rooter gives you a one-time code. Put it in your bio. The verifier reads it.</span></div>
+        <div class="proof"><b>Sign in</b><span>Where the platform supports it, sign in through its own login. Rooter never sees your password.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="window" aria-labelledby="window-title">
+    <span class="eyebrow" id="window-title">The 90 days · if the person never shows</span>
+    <div class="window-track">
+      <div class="seg">Day 0 → 90 · escrow builds for the person</div>
+      <div class="sweep">sweep() → Rooter Pool</div>
+      <div class="seg after">Window resets</div>
+    </div>
+    <div class="window-labels">
+      <div><b>Day 0</b>The coin is born. The person's 2% accrues under their account on every trade.</div>
+      <div><b>Day 90</b>Anyone can call <code>sweep()</code>. The escrow is paid to the wallets that held the coin.</div>
+      <div><b>Day 91 on</b>Escrow builds for the person again. Claim on day 200 and you get everything from day 91.</div>
+    </div>
+    <div class="vs">
+      <div class="them"><b>The model before Rooter</b>Unclaimed fees buy the coin back and burn it. It helps every holder a little and nobody in particular.</div>
+      <div class="us"><b>Rooter</b>Unclaimed fees go to the exact wallets that held the coin while the person was absent. They are the reason there was a market.</div>
+    </div>
+  </div>
+</section>
+
+<section id="stock" class="section wrap reveal" aria-labelledby="stock-title" style="border-top:0">
+  <div class="section-head">
+    <div><span class="eyebrow">Root in their stock</span><h2 id="stock-title" class="display h2">Root for the founder.<br>Pay them in the company.</h2></div>
+  </div>
+  <div class="stock">
+    <div class="card">
+      <p class="lede">A coin can be quoted in a Robinhood Stock Token instead of ETH. Fees accrue and are paid in that token, to the person, the launcher, the rooters and the root links alike. The pool trades at any hour. Stock-market hours don't apply.</p>
+      <p class="fine">Stock Tokens are issued by Robinhood Assets (Jersey) Limited under its own terms. They may not be offered, sold or delivered in the United States, and further restrictions apply in the UK, Canada and Switzerland. The Rooter interface applies those rules to stock-quoted coins. Rooter does not issue, custody, mint, redeem or price Stock Tokens.</p>
+    </div>
+    <div class="card quote-demo" aria-label="Example quotes">
+      <div class="qrow"><span>A coin for a creator</span><span class="tag">Quoted in ETH</span></div>
+      <div class="qrow"><span>A coin for a chief executive</span><span class="tag">Quoted in their stock</span></div>
+      <div class="qrow"><span>Paid out in</span><span class="tag">The same quote</span></div>
+      <p class="fine">Quotes come from an allowed list with a Chainlink feed for each. If a feed is stale or the sequencer is down, the launch is refused rather than opened at a wrong price.</p>
+    </div>
+  </div>
+</section>
+
+<section id="talk" class="section wrap reveal" aria-labelledby="talk-title">
+  <div class="section-head">
+    <div><span class="eyebrow">Straight talk</span><h2 id="talk-title" class="display h2">What can't happen.<br>And what can.</h2></div>
+    <p class="aside">Every design has a price. Here is Rooter's, said plainly, so nothing is discovered later.</p>
+  </div>
+  <div class="talk-cols">
+    <div class="cant">
+      <h3>Can't happen</h3>
+      <div class="row"><b>No withdraw function.</b><span>Liquidity is locked at birth. Not the launcher, not the person, not the team can take it out.</span></div>
+      <div class="row"><b>Escrow is theirs.</b><span>It moves only on a verified claim by that account, or by a public sweep to that coin's own holders after 90 days.</span></div>
+      <div class="row"><b>Never above 3%.</b><span>The fee can't change on a past trade and can't go higher. Every range is published.</span></div>
+      <div class="row"><b>Exits don't pause.</b><span>Sells, claims, holder withdrawals and sweeps can't be paused. Only new launches and new buys can, in an emergency.</span></div>
+    </div>
+    <div class="can">
+      <h3>Can happen</h3>
+      <div class="row"><b>A coin can go to zero.</b><span>Locked liquidity stops a rug. It doesn't mean anyone will buy.</span></div>
+      <div class="row"><b>No trades, no pay.</b><span>Every payment is a slice of a real trade. There is no rate and nothing that tries to produce one.</span></div>
+      <div class="row"><b>The person may never come.</b><span>A coin is a bet on attention, not an endorsement. Every coin shows whether its person has claimed.</span></div>
+      <div class="row"><b>Code can be wrong.</b><span>The contracts are audited before mainnet. Audits find bugs. They don't prove there are none.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="matchups" class="section wrap reveal" aria-labelledby="match-title" style="border-top:0;padding-top:0">
+  <div class="section-head">
+    <div><span class="eyebrow">Matchups · a later phase</span><h2 id="match-title" class="display h2">Who are you<br>rooting for?</h2></div>
+    <p class="aside">Two coins. Seven days. The prize goes into the winning coin's Rooter Pool, counted from the fee hook's own events.</p>
+  </div>
+  <div class="card match dots">
+    <div class="fighters">
+      <div class="fighter" style="--c:var(--pink)"><div class="ava" data-bot="fight"></div><div><b>$FOUNDR</b><span>@founder_mode</span></div></div>
+      <div class="vsx">VS</div>
+      <div class="fighter r" style="--c:var(--cyan)"><div class="ava" data-bot="fight"></div><div><b>$NIGHTS</b><span>@night_shift</span></div></div>
+    </div>
+    <div class="race" aria-label="Rooted volume, example"><div class="l" id="race-l" style="flex-grow:52">52%</div><div class="rr" id="race-r" style="flex-grow:48">48%</div></div>
+    <div class="match-foot">
+      <span>Example matchup · rooted volume share · prize 1,000,000 $ROOTR</span>
+      <div class="clock" aria-label="Time left in the example matchup"><span id="k-d">6<small>DAYS</small></span><span id="k-h">23<small>HRS</small></span><span id="k-m">59<small>MIN</small></span><span id="k-s">59<small>SEC</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="token" class="wrap reveal" aria-labelledby="token-title" style="padding-bottom:clamp(64px, 8vw, 96px)">
+  <div class="card token">
+    <div class="token-head">
+      <div>
+        <span class="eyebrow hot">The token</span>
+        <h2 id="token-title" class="display" style="font-size:clamp(56px, 6.6vw, 96px)">$ROOTR</h2>
+        <p class="lede">The protocol's token. Fixed supply, launched on Pons, live before the protocol. You don't need it to launch, trade, hold or claim a coin.</p>
+      </div>
+      <div class="coin-medal" data-bot="medal" aria-hidden="true"></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1B</b><span>Fixed supply</span></div>
+      <div class="stat"><b>0</b><span>Mint functions</span></div>
+      <div class="stat"><b>50%</b><span>Of net protocol fee buys &amp; burns</span></div>
+      <div class="stat"><b>4663</b><span>Robinhood Chain ID</span></div>
+    </div>
+    <div class="uses">
+      <div><b>Buybacks</b>Half of the protocol's net share of every trade buys $ROOTR on the open market and burns it. Anyone can call the contract.</div>
+      <div><b>Matchups</b>Two coins, seven days, one prize. The weekly featured matchup pays in $ROOTR to the winning coin's holders.</div>
+      <div><b>Governance</b>Holders decide the stock quote list, parameter moves within their bounds, and the featured matchup.</div>
+      <div><b>Later</b>Staking for extra weight in the Rooter Pools you hold, specified and audited on its own first.</div>
+    </div>
+    <div class="warn"><b>Read this first.</b> $ROOTR launched before the protocol so it could be built in the open with a funded treasury. Today, holding $ROOTR is holding a position in a plan, not in a running product. Buybacks are how Rooter spends revenue, not a floor under the price.</div>
+  </div>
+</section>
+
+<section id="next" class="section wrap reveal" aria-labelledby="next-title">
+  <div class="section-head">
+    <div><span class="eyebrow">What comes next</span><h2 id="next-title" class="display h2">An order,<br>not a calendar.</h2></div>
+    <p class="aside">Each step starts when the one before it has been checked. None has a date until it's done.</p>
+  </div>
+  <ol class="steps">
+    <li class="now"><div class="top"><span class="n">1</span><span class="s">Now</span></div><b>Token &amp; paper</b><p>$ROOTR live on Pons. The whitepaper and this site published.</p></li>
+    <li><div class="top"><span class="n">2</span><span class="s">Next</span></div><b>The build</b><p>Contracts tested on testnet. Outside audit, report published in full. Deployed behind the pause.</p></li>
+    <li><div class="top"><span class="n">3</span><span class="s">Later</span></div><b>Rooting opens</b><p>ETH-quoted coins for everyone. Rooter Pool, finder's fee, root links and sweeps from coin one.</p></li>
+    <li><div class="top"><span class="n">4</span><span class="s">Later</span></div><b>Their stock</b><p>The allowed list opens with the first Robinhood Stock Tokens.</p></li>
+    <li><div class="top"><span class="n">5</span><span class="s">Later</span></div><b>Matchups</b><p>Sponsored matchups, the weekly featured one, and $ROOTR staking for pool weight.</p></li>
+  </ol>
+  <p class="never">Three things are not on this list and never will be: <b>a way to withdraw locked liquidity</b>, <b>a way to reach an account's escrow without its claim</b>, and <b>a fee above three percent</b>.</p>
+</section>
+
+<div class="wrap">
+  <section class="cta reveal" aria-labelledby="cta-title">
+    <div>
+      <h2 id="cta-title" class="display" style="font-size:clamp(44px, 6.6vw, 96px)">Someone's about<br>to root for you.</h2>
+      <div class="btns">
+        <a class="pill ink big" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Read the whitepaper</a>
+        <a class="pill line big" href="https://rooter-3.gitbook.io/whitepaper/claim-your-coin" target="_blank" rel="noopener">How claiming works</a>
+      </div>
+    </div>
+    <div class="bot" data-bot="cta" aria-hidden="true"></div>
+  </section>
+</div>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot">
+    <a class="brand" href="#top" aria-label="Back to top"><span data-bot="mini"></span><span class="wordmark">Rooter</span></a>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Whitepaper</a>
+      <a href="https://rooter-3.gitbook.io/whitepaper/under-the-hood" target="_blank" rel="noopener">Under the hood</a>
+      <a href="https://rooter-3.gitbook.io/whitepaper/the-numbers" target="_blank" rel="noopener">The numbers</a>
+      <a href="https://rooter-3.gitbook.io/whitepaper/straight-talk" target="_blank" rel="noopener">Straight talk</a>
+    </nav>
+    <span class="eyebrow">Root for anyone.</span>
+  </div>
+  <p class="legal">Rooter is a protocol on Robinhood Chain, an Ethereum Layer 2 whose sequencer is run by Robinhood. $ROOTR is live on Pons. The Rooter protocol described here is not yet deployed. Contract addresses are published on the Addresses page of the whitepaper as each is deployed and verified. A coin about a person is a bet on attention, not a message from that person, and unclaimed coins are labelled community-created. Nothing on this page is a prediction, an offer or advice. Coins can lose all their value.</p>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var C = {bone:'#F4F1EA', void:'#0A0B0D', panel:'#15171B', rally:'#FF4D00', dim:'#5C616B'};
+  var CROWD = ['#FF4D00','#C8FF00','#FF2D8A','#00E5FF'];
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  var uid = 0;
+  // Rootbot on a 200x200 grid. bg is the visor colour; it should match what sits behind the bot.
+  function bot(fg, bg, a, opt){
+    opt = opt || {};
+    var id = 'g' + (uid++), s = 'fill="none" stroke-linecap="round" stroke-linejoin="round"';
+    var awake = 'M59 106 L77 87 L95 106 M105 106 L123 87 L141 106', asleep = 'M62 97 H94 M106 97 H138';
+    var glow = opt.glow !== false;
+    return '<svg class="rb' + (opt.asleep ? ' asleep' : '') + '" viewBox="0 0 200 200" aria-hidden="true" focusable="false" style="overflow:visible;display:block;width:100%;height:auto">' +
+      (glow ? '<defs><filter id="' + id + '" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter></defs>' : '') +
+      '<g class="' + (opt.bob ? 'bob' : '') + '">' +
+      '<path d="M100 48V24" stroke="' + fg + '" stroke-width="7" ' + s + '/>' +
+      '<circle class="tip" cx="100" cy="16" r="10" fill="' + a + '"/>' +
+      '<rect x="22" y="86" width="12" height="30" rx="5" fill="' + fg + '"/><rect x="166" y="86" width="12" height="30" rx="5" fill="' + fg + '"/>' +
+      '<rect x="34" y="48" width="132" height="106" rx="30" fill="' + fg + '"/>' +
+      '<rect x="50" y="66" width="100" height="56" rx="18" fill="' + bg + '"/>' +
+      '<g class="look"><g class="blink">' +
+        '<g class="eyes-awake">' + (glow ? '<path d="' + awake + '" stroke="' + a + '" stroke-width="9" ' + s + ' opacity=".85" filter="url(#' + id + ')"/>' : '') +
+        '<path d="' + awake + '" stroke="' + a + '" stroke-width="9" ' + s + '/></g>' +
+        '<g class="eyes-asleep"><path d="' + asleep + '" stroke="' + C.dim + '" stroke-width="9" ' + s + '/></g>' +
+      '</g></g>' +
+      '<path d="M80 136Q100 148 120 136" stroke="' + bg + '" stroke-width="6" ' + s + '/>' +
+      '</g>' +
+      '<path d="M68 154Q60 172 72 192M100 154V194M132 154Q140 172 128 192" stroke="' + fg + '" stroke-width="7" ' + s + '/>' +
+      '<circle class="tip" cx="72" cy="192" r="5" fill="' + a + '"/><circle class="tip" cx="100" cy="194" r="5" fill="' + a + '"/><circle class="tip" cx="128" cy="192" r="5" fill="' + a + '"/>' +
+      '</svg>';
+  }
+  var kinds = {
+    mini: function(){ return bot(C.bone, C.void, C.rally, {glow:false}); },
+    'mini-asleep': function(){ return bot(C.bone, C.void, C.rally, {glow:false, asleep:true}); },
+    hero: function(){ return bot(C.bone, C.void, C.rally, {bob:true}); },
+    'switch': function(){ return bot(C.bone, C.panel, C.rally, {asleep:true}); },
+    claim: function(){ return bot(C.void, C.bone, C.rally, {glow:false}); },
+    medal: function(){ return bot(C.bone, C.void, C.rally); },
+    cta: function(){ return bot(C.void, C.rally, C.bone, {glow:false}); },
+    fight: function(){ return bot(C.void, 'transparent', C.bone, {glow:false}); }
+  };
+  document.querySelectorAll('[data-bot]').forEach(function(el){
+    var k = kinds[el.getAttribute('data-bot')]; if (k) el.innerHTML = k();
+  });
+  // The brand mark in the nav/footer sits at a fixed size.
+  document.querySelectorAll('.brand [data-bot] svg').forEach(function(s){ s.style.width = '40px'; });
+
+  // Eyes follow the pointer on the hero bot.
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var heroLook = document.querySelector('[data-bot="hero"] .look');
+  if (heroLook && !reduce) {
+    window.addEventListener('pointermove', function(e){
+      var r = heroLook.ownerSVGElement.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width/2)) / innerWidth, dy = (e.clientY - (r.top + r.height/2)) / innerHeight;
+      heroLook.style.transform = 'translate(' + Math.max(-1,Math.min(1,dx))*7 + 'px,' + Math.max(-1,Math.min(1,dy))*5 + 'px)';
+    }, {passive:true});
+  }
+
+  // Handle marquee
+  var hs = ['@anyone','@your_gm_guy','@the_intern','@founder_mode','@mom','@that_one_dev','@night_shift','@the_barista','@coach','@you'];
+  var row = hs.map(function(h, i){ var c = CROWD[i % 4]; return '<span class="h" style="--c:' + c + '">' + h + '</span><span class="t" style="--c:' + c + '">Rooted</span>'; }).join('');
+  // Orbiting coins around the hero bot
+  var orbit = document.getElementById('orbit');
+  if (orbit) orbit.innerHTML = ['$MOM','$COACH','$INTERN','$DEV','$BARISTA','$YOU'].map(function(t, i, a){
+    var ang = i / a.length * Math.PI * 2, r = 50;
+    return '<span class="chip" style="left:' + (50 + r*Math.cos(ang)) + '%;top:' + (50 + r*Math.sin(ang)) + '%"><span style="background:' + CROWD[i % 4] + '">' + t + '</span></span>';
+  }).join('');
+  document.getElementById('handles-a').innerHTML = row;
+  document.getElementById('handles-b').innerHTML = row;
+
+  // Launch preview
+  var form = document.getElementById('launch'), hIn = document.getElementById('handle'), pIn = document.getElementById('platform');
+  function symbolFor(h){ var s = h.replace(/[^a-z0-9]/gi,'').toUpperCase().slice(0,6); return s || 'ANYONE'; }
+  function paint(){
+    var h = hIn.value.replace(/^@+/, '').trim() || 'anyone';
+    document.getElementById('coin-name').textContent = '$' + symbolFor(h);
+    document.getElementById('coin-meta').textContent = 'A coin for @' + h + ' on ' + pIn.value + ' · community-created';
+  }
+  hIn.addEventListener('input', paint); pIn.addEventListener('change', paint);
+  var card = form.querySelector('.coin');
+  var pool = ['the_barista','coach_k','founder_mode','night_shift','that_one_dev','the_intern','mom','gm_guy','lil_streamer','chess_queen','ceo_of_vibes','your_landlord'];
+  document.getElementById('shuffle').addEventListener('click', function(){
+    card.classList.remove('dealt'); void card.offsetWidth;
+    if (!reduce) card.classList.add('dealt');
+    setTimeout(function(){
+      hIn.value = pick(pool);
+      pIn.selectedIndex = Math.floor(Math.random() * pIn.options.length);
+      card.style.setProperty('--c', pick(CROWD));
+      paint();
+    }, reduce ? 0 : 250);
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); paint();
+    if (card.animate && !reduce) card.animate([{transform:'scale(.97)'},{transform:'scale(1.02)'},{transform:'scale(1)'}], {duration:380, easing:'ease-out'});
+  });
+  paint();
+
+  // The switch
+  var SPLIT = {
+    unclaimed: {person:2.0, launcher:0.0, pool:0.5, protocol:0.5},
+    claimed:   {person:1.5, launcher:0.5, pool:0.5, protocol:0.5}
+  };
+  var sw = document.getElementById('claim-switch');
+  var swBot = document.querySelector('[data-bot="switch"] .rb');
+  var claimIc = document.querySelector('#claim-ic .rb');
+  var amt = document.getElementById('amt'), quote = document.getElementById('quote'), via = document.getElementById('via');
+  var claimed = false;
+  function fmt(n){ return n.toLocaleString('en-US', {minimumFractionDigits:4, maximumFractionDigits:4}); }
+  function render(){
+    var s = claimed ? SPLIT.claimed : SPLIT.unclaimed;
+    sw.setAttribute('aria-checked', claimed ? 'true' : 'false');
+    swBot.classList.toggle('asleep', !claimed);
+    if (claimIc) claimIc.classList.toggle('asleep', !claimed);
+    document.getElementById('split-title').textContent = claimed ? 'After the person claims' : 'Before the person claims';
+    document.getElementById('w-person').textContent = claimed ? 'paid straight to their wallet' : 'held in escrow';
+    document.getElementById('w-launcher').textContent = claimed ? "finder's fee, forever" : 'nothing until they show';
+    document.getElementById('switch-caption').textContent = claimed
+      ? "Claimed. The person is paid directly, and the launcher who found them starts earning a finder's fee on every trade, for good."
+      : "Unclaimed. The person's share builds in escrow under their account. The launcher's half point goes to the person too.";
+    Object.keys(s).forEach(function(k){
+      document.querySelector('.fill[data-k="' + k + '"]').style.width = (s[k] / 2 * 100) + '%';
+      document.querySelector('.pct[data-p="' + k + '"]').textContent = s[k].toFixed(1) + '%';
+    });
+    document.querySelector('[data-row="launcher"]').classList.toggle('zero', s.launcher === 0);
+
+    var a = Math.max(0, parseFloat(amt.value) || 0), q = quote.value, link = via.checked;
+    var rows = [
+      ['To the person', a * s.person / 100],
+      ['To the launcher', a * s.launcher / 100],
+      ['To the Rooter Pool', a * s.pool / 100],
+      [link ? 'To your root link' : 'Root link (none used)', link ? a * 0.0025 : 0],
+      ['To the protocol', a * (link ? 0.0025 : 0.005)],
+      ['Buys coins', a * 0.97]
+    ];
+    document.getElementById('calc-body').innerHTML = rows.map(function(r, i){
+      return '<tr' + (i === rows.length - 1 ? ' class="sum"' : '') + '><td>' + r[0] + '</td><td>' + fmt(r[1]) + ' ' + q + '</td></tr>';
+    }).join('');
+  }
+  sw.addEventListener('click', function(){ claimed = !claimed; render(); if (claimed) confetti(sw); });
+
+  // Confetti in the crowd colours, fired when a coin is claimed
+  var cv = document.getElementById('confetti'), cx = cv.getContext('2d'), bits = [], running = false;
+  function confetti(from){
+    if (reduce) return;
+    var r = from.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    for (var i = 0; i < 120; i++) bits.push({x:r.left + r.width/2, y:r.top + r.height/2, vx:(Math.random()-.5)*14, vy:-Math.random()*14-4, s:Math.random()*8+4, c:pick(CROWD), a:Math.random()*6, va:(Math.random()-.5)*.4, life:0});
+    if (!running){ running = true; requestAnimationFrame(tick); }
+  }
+  function tick(){
+    cx.clearRect(0,0,innerWidth,innerHeight);
+    bits = bits.filter(function(b){ return b.life < 140 && b.y < innerHeight + 40; });
+    bits.forEach(function(b){ b.life++; b.vy += .45; b.vx *= .985; b.x += b.vx; b.y += b.vy; b.a += b.va;
+      cx.save(); cx.translate(b.x,b.y); cx.rotate(b.a); cx.fillStyle = b.c; cx.fillRect(-b.s/2,-b.s/4,b.s,b.s/2); cx.restore(); });
+    if (bits.length) requestAnimationFrame(tick); else { running = false; cx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+
+  // Simulated rooting feed. Numbers are made up for the preview and say so on the page.
+  var feed = document.getElementById('feed'), tot = {n:0, pool:0, person:0, links:0};
+  var who = ['anon','0x7a…c1','degen_dad','tuesday','0x19…f0','moonmom','the_barista','0xbe…42','quiet_holder','rootmaxi'];
+  var coins = [['$FOUNDR','founder_mode'],['$NIGHTS','night_shift'],['$MOM','mom'],['$COACH','coach_k'],['$DEV','that_one_dev'],['$VIBES','ceo_of_vibes']];
+  function addTx(){
+    var c = pick(coins), col = pick(CROWD), buy = Math.random() > .3, eth = +(Math.random() * (Math.random() > .85 ? 4 : .6) + .01).toFixed(3);
+    var link = Math.random() > .5, sweep = Math.random() > .94;
+    tot.n++; tot.pool += eth * .005; tot.person += eth * .02; if (link) tot.links += eth * .0025;
+    var el = document.createElement('div'); el.className = 'tx'; el.style.setProperty('--c', col);
+    el.innerHTML = sweep
+      ? '<span class="av">↻</span><span class="what">sweep() paid <b>' + c[0] + '</b> holders</span><span class="amt">' + (eth*3).toFixed(3) + ' ETH</span>'
+      : '<span class="av">' + c[0].charAt(1) + '</span><span class="what">' + pick(who) + (buy ? ' rooted ' : ' sold ') + '<b>' + c[0] + '</b>' + (link ? ' via a root link' : '') + '</span><span class="amt">' + (buy ? '+' : '−') + eth.toFixed(3) + ' ETH</span>';
+    feed.insertBefore(el, feed.firstChild);
+    while (feed.children.length > 7) feed.removeChild(feed.lastChild);
+    document.getElementById('c-trades').textContent = tot.n.toLocaleString('en-US');
+    document.getElementById('c-pool').textContent = tot.pool.toFixed(3);
+    document.getElementById('c-person').textContent = tot.person.toFixed(3);
+    document.getElementById('c-links').textContent = tot.links.toFixed(3);
+  }
+  for (var i = 0; i < 6; i++) addTx();
+  if (!reduce) setInterval(addTx, 1700);
+
+  // Example matchup: the race wobbles and the clock counts down from seven days
+  var end = Date.now() + 7 * 864e5 - 1000, share = 52;
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function clock(){
+    var t = Math.max(0, end - Date.now()), d = Math.floor(t / 864e5), h = Math.floor(t / 36e5) % 24, m = Math.floor(t / 6e4) % 60, s = Math.floor(t / 1e3) % 60;
+    document.getElementById('k-d').firstChild.nodeValue = d;
+    document.getElementById('k-h').firstChild.nodeValue = pad(h);
+    document.getElementById('k-m').firstChild.nodeValue = pad(m);
+    document.getElementById('k-s').firstChild.nodeValue = pad(s);
+  }
+  clock(); setInterval(clock, 1000);
+  if (!reduce) setInterval(function(){
+    share = Math.max(30, Math.min(70, share + (Math.random() - .5) * 8));
+    var l = Math.round(share);
+    var L = document.getElementById('race-l'), Rr = document.getElementById('race-r');
+    L.style.flexGrow = l; Rr.style.flexGrow = 100 - l; L.textContent = l + '%'; Rr.textContent = (100 - l) + '%';
+  }, 2200);
+
+  // Sections rise into place as they arrive. They are fully visible at rest; only their position moves.
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  [amt, quote, via].forEach(function(el){ el.addEventListener('input', render); el.addEventListener('change', render); });
+  render();
+})();
+</script>
+</body>
+</html>

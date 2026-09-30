@@ -21,3 +21,9 @@ Create the file, then add a line for it in `SUMMARY.md` in the position you want
 ## Addresses
 
 When the $ROOTR launch transaction is confirmed, add `addresses.md` with the token address, the treasury address and the Pons page, and list it in `SUMMARY.md` after **$ROOTR**. Add each protocol contract to it as it is deployed and verified on the Robinhood Chain explorer.
+
+## The website and the logo
+
+The landing page is in `site/`, and the logo and brand files are in `brand/` and `site/assets/logo/`. See `site/README.md` and `brand/README.md`. GitBook ignores both folders because they are not listed in `SUMMARY.md`.
+
+To give the GitBook space the Rooter logo, upload `site/assets/logo/favicon.svg` as the space icon and `site/assets/logo/lockup-on-dark.svg` as the logo, under **Customize**.
