@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Who are you rooting for?](README.md)
+* [Introduction](README.md)
 * [Why Rooter](why-rooter.md)
 * [How a coin is born](how-a-coin-is-born.md)
 * [Rooting](rooting.md)

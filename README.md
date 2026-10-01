@@ -1,8 +1,8 @@
-# Who are you rooting for?
+# Introduction
 
 <figure><img src="https://rootrprotocol.github.io/rooter-site/brand/lockup-dark-3400x840.png" alt="Rooter"></figure>
 
-Rooter lets anyone launch a coin for anyone. Paste a handle. A coin exists, with liquidity that can never be pulled. People root for the person by trading it. The person earns from every trade and can claim what is theirs by proving the handle. And unlike every person coin before it, the people doing the rooting earn too.
+**Who are you rooting for?** Rooter lets anyone launch a coin for anyone. Paste a handle. A coin exists, with liquidity that can never be pulled. People root for the person by trading it. The person earns from every trade and can claim what is theirs by proving the handle. And unlike every person coin before it, the people doing the rooting earn too.
 
 Every rooter feeds the next rooter.
 
