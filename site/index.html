@@ -21,9 +21,10 @@
 :root{
   --void:#0A0B0D; --panel:#15171B; --line:#26292F; --dot:#2A2D33;
   --bone:#F4F1EA; --mute:#9AA0AB; --dim:#5C616B;
-  --rally:#FF4D00; --rally-ink:#0A0B0D;
-  /* the crowd: every coin gets one of these; rally stays the brand's own */
-  --volt:#C8FF00; --pink:#FF2D8A; --cyan:#00E5FF;
+  /* The accent. Change these four together; everything on the page follows. */
+  --rally:#FF4D00; --rally-rgb:255 77 0; --rally-deep:#9E2F00; --rally-ink:#0A0B0D;
+  /* The crowd: coins and people get one of these three. Never the brand itself. */
+  --crowd-a:#C8FF00; --crowd-b:#FF2D8A; --crowd-c:#00E5FF;
   --display:'Bricolage Grotesque', Impact, 'Arial Black', sans-serif;
   --mono:'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --gutter:clamp(16px, 4.4vw, 64px);
@@ -60,7 +61,7 @@ img,svg{max-width:100%}
 a.pill{transition:transform .15s ease, background-color .15s ease}
 a.pill:hover{transform:translateY(-2px)}
 .live-dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:ping 2s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,77,0,.6)}80%,100%{box-shadow:0 0 0 8px rgba(255,77,0,0)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgb(var(--rally-rgb) / .6)}80%,100%{box-shadow:0 0 0 8px rgb(var(--rally-rgb) / 0)}}
 
 .section{padding-block:clamp(64px, 8vw, 112px);border-top:1px solid var(--line)}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(28px, 4vw, 48px)}
@@ -304,7 +305,7 @@ footer{border-top:1px solid var(--line);padding-block:40px 48px;display:flex;fle
 .btn-white:hover{transform:translateY(-2px)}
 .hero{position:relative;overflow:hidden;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding-block:clamp(32px,4vw,56px) 0;align-items:center;min-height:min(820px, calc(100svh - 76px))}
 .hero::before{content:'';position:absolute;inset:0;z-index:-1;background:
-  radial-gradient(40% 50% at 72% 55%, rgba(255,77,0,.22), transparent 70%),
+  radial-gradient(40% 50% at 72% 55%, rgb(var(--rally-rgb) / .22), transparent 70%),
   radial-gradient(30% 40% at 10% 10%, rgba(0,229,255,.06), transparent 70%),
   repeating-linear-gradient(90deg, transparent 0 140px, rgba(255,255,255,.018) 140px 146px),
   linear-gradient(180deg, #0C0E12, var(--void));}
@@ -313,12 +314,12 @@ footer{border-top:1px solid var(--line);padding-block:40px 48px;display:flex;fle
 .kicker{display:inline-flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
 .kdot{width:8px;height:8px;border-radius:50%;background:var(--rally);box-shadow:0 0 12px var(--rally)}
 .hero-h{font-size:clamp(52px, 5.9vw, 86px);font-stretch:75%;letter-spacing:-.02em;line-height:.9}
-.hero-h .accent{color:var(--rally);text-shadow:0 0 40px rgba(255,77,0,.35)}
+.hero-h .accent{color:var(--rally);text-shadow:0 0 40px rgb(var(--rally-rgb) / .35)}
 .muted-2{color:#B9BDC6}
 .hero-ctas{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
-.btn-chunky{display:inline-flex;align-items:center;gap:40px;padding:20px 32px;border-radius:8px;background:var(--rally);color:var(--void);font:500 17px var(--mono);text-decoration:none;box-shadow:0 6px 0 #9E2F00, 0 14px 30px rgba(255,77,0,.25);transition:transform .12s, box-shadow .12s}
-.btn-chunky:hover{transform:translateY(-2px);box-shadow:0 8px 0 #9E2F00, 0 18px 36px rgba(255,77,0,.35)}
-.btn-chunky:active{transform:translateY(5px);box-shadow:0 1px 0 #9E2F00}
+.btn-chunky{display:inline-flex;align-items:center;gap:40px;padding:20px 32px;border-radius:8px;background:var(--rally);color:var(--void);font:500 17px var(--mono);text-decoration:none;box-shadow:0 6px 0 var(--rally-deep), 0 14px 30px rgb(var(--rally-rgb) / .25);transition:transform .12s, box-shadow .12s}
+.btn-chunky:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--rally-deep), 0 18px 36px rgb(var(--rally-rgb) / .35)}
+.btn-chunky:active{transform:translateY(5px);box-shadow:0 1px 0 var(--rally-deep)}
 .btn-chunky span{transition:transform .2s}.btn-chunky:hover span{transform:translateX(5px)}
 .btn-link{display:inline-flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none;font:500 16px var(--mono);padding-bottom:6px;border-bottom:1.5px solid var(--mute)}
 .btn-link svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
@@ -372,7 +373,7 @@ footer{border-top:1px solid var(--line);padding-block:40px 48px;display:flex;fle
 .reveal{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .js .reveal:not(.in){transform:translateY(36px)}
 .shuffle-btn{background:var(--panel);border:1px solid var(--line);color:var(--bone);cursor:pointer}
-.shuffle-btn:hover{border-color:var(--volt);color:var(--volt)}
+.shuffle-btn:hover{border-color:var(--crowd-a);color:var(--crowd-a)}
 .coin{--c:var(--rally);transition:border-color .3s}
 .coin .face{background:var(--c);transition:background-color .3s}
 .coin .name{color:var(--c);transition:color .3s}
@@ -416,8 +417,8 @@ button.pill{cursor:pointer;transition:transform .15s ease}
 .vsx{font:800 clamp(34px,4vw,56px)/1 var(--display);color:var(--bone);transform:skewX(-6deg)}
 .race{display:flex;height:44px;border-radius:12px;overflow:hidden;background:var(--void);border:1px solid var(--line)}
 .race div{height:100%;transition:flex-grow 1s cubic-bezier(.3,1.2,.4,1);display:flex;align-items:center;padding:0 14px;font:500 13px var(--mono);color:var(--void);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
-.race .l{background:var(--pink)}
-.race .rr{background:var(--cyan);justify-content:flex-end}
+.race .l{background:var(--crowd-b)}
+.race .rr{background:var(--crowd-c);justify-content:flex-end}
 .match-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--mute)}
 .clock{display:flex;gap:8px}
 .clock span{min-width:58px;padding:10px 8px;border-radius:12px;background:var(--void);border:1px solid var(--line);text-align:center;font:800 24px/1 var(--display);color:var(--bone);font-variant-numeric:tabular-nums}
@@ -543,12 +544,12 @@ button.pill{cursor:pointer;transition:transform .15s ease}
       <p>Paste a handle from X, YouTube, TikTok, Instagram, Snapchat, Twitch, Kick or Farcaster. A coin is born with 1B supply in a pool that opens at $10,000. The liquidity is locked in a contract with no withdraw function.</p>
     </article>
     <article class="card move">
-      <div class="move-top"><span class="n" style="color:var(--volt)">02</span><span class="ic" data-bot="mini"></span></div>
+      <div class="move-top"><span class="n" style="color:var(--crowd-a)">02</span><span class="ic" data-bot="mini"></span></div>
       <h3 class="display h3">Root</h3>
       <p>Buy it, hold it, bring someone to it. Every trade pays a flat 3%, taken inside the swap. Holders earn from the coin's Rooter Pool by balance and by time.</p>
     </article>
     <article class="card move">
-      <div class="move-top"><span class="n" style="color:var(--cyan)">03</span><span class="ic" data-bot="mini-asleep" id="claim-ic"></span></div>
+      <div class="move-top"><span class="n" style="color:var(--crowd-c)">03</span><span class="ic" data-bot="mini-asleep" id="claim-ic"></span></div>
       <h3 class="display h3">Claim</h3>
       <p>The person proves the handle and everything held for them unlocks. Only they can take it. Unclaimed after 90 days, it goes to the holders instead of a burn.</p>
     </article>
@@ -603,13 +604,13 @@ button.pill{cursor:pointer;transition:transform .15s ease}
       <p>You trade against the coin's locked pool. 3% of the quote side is taken before the swap runs. The pool charges no other fee, so 3% is the whole cost.</p>
     </div>
     <div>
-      <span class="k" style="color:var(--volt)">0.5%<small>to holders</small></span>
+      <span class="k" style="color:var(--crowd-a)">0.5%<small>to holders</small></span>
       <p>Half a point of every trade goes to the coin's Rooter Pool, paid by how much you held and for how long. Hold through a quiet month and you earn from every trade in it.</p>
       <pre class="code"><span class="c">// settled before any balance changes</span>
 owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
     </div>
     <div>
-      <span class="k" style="color:var(--pink)">0.25%<small>to your link</small></span>
+      <span class="k" style="color:var(--crowd-b)">0.25%<small>to your link</small></span>
       <p>Every wallet has a root link for every coin. A trade through yours pays you a quarter point of it, in that transaction. It comes out of the protocol's share, not the person's or the rooters'.</p>
     </div>
   </div>
@@ -696,9 +697,9 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
   </div>
   <div class="card match dots">
     <div class="fighters">
-      <div class="fighter" style="--c:var(--pink)"><div class="ava" data-bot="fight"></div><div><b>$FOUNDR</b><span>@founder_mode</span></div></div>
+      <div class="fighter" style="--c:var(--crowd-b)"><div class="ava" data-bot="fight"></div><div><b>$FOUNDR</b><span>@founder_mode</span></div></div>
       <div class="vsx">VS</div>
-      <div class="fighter r" style="--c:var(--cyan)"><div class="ava" data-bot="fight"></div><div><b>$NIGHTS</b><span>@night_shift</span></div></div>
+      <div class="fighter r" style="--c:var(--crowd-c)"><div class="ava" data-bot="fight"></div><div><b>$NIGHTS</b><span>@night_shift</span></div></div>
     </div>
     <div class="race" aria-label="Rooted volume, example"><div class="l" id="race-l" style="flex-grow:52">52%</div><div class="rr" id="race-r" style="flex-grow:48">48%</div></div>
     <div class="match-foot">
@@ -781,8 +782,23 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
 <script>
 (function(){
   document.documentElement.classList.add('js');
-  var C = {bone:'#F4F1EA', void:'#0A0B0D', panel:'#15171B', rally:'#FF4D00', dim:'#5C616B'};
-  var CROWD = ['#FF4D00','#C8FF00','#FF2D8A','#00E5FF'];
+  var C = {bone:'var(--bone)', void:'var(--void)', panel:'var(--panel)', rally:'var(--rally)', dim:'var(--dim)'};
+  var CROWD = ['var(--rally)','var(--crowd-a)','var(--crowd-b)','var(--crowd-c)'];
+  // Accent sets. applyTheme() rewrites the tokens on :root and the whole page follows.
+  var THEMES = {
+    rally: {accent:'#FF4D00', rgb:'255 77 0',   deep:'#9E2F00', crowd:['#C8FF00','#FF2D8A','#00E5FF']},
+    volt:  {accent:'#C8FF00', rgb:'200 255 0',  deep:'#6B8A00', crowd:['#FF4D00','#FF2D8A','#00E5FF']},
+    mint:  {accent:'#2BF59B', rgb:'43 245 155', deep:'#0E7A4C', crowd:['#FF4D00','#FF2D8A','#3D7BFF']},
+    blue:  {accent:'#3D7BFF', rgb:'61 123 255', deep:'#1636A8', crowd:['#FF4D00','#C8FF00','#FF2D8A']},
+    cyan:  {accent:'#00E5FF', rgb:'0 229 255',  deep:'#007A8A', crowd:['#FF4D00','#C8FF00','#FF2D8A']}
+  };
+  function applyTheme(name){
+    var t = THEMES[name] || THEMES.rally, r = document.documentElement.style;
+    r.setProperty('--rally', t.accent); r.setProperty('--rally-rgb', t.rgb); r.setProperty('--rally-deep', t.deep);
+    r.setProperty('--crowd-a', t.crowd[0]); r.setProperty('--crowd-b', t.crowd[1]); r.setProperty('--crowd-c', t.crowd[2]);
+    document.documentElement.setAttribute('data-accent', name);
+  }
+  window.rooterTheme = applyTheme;
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
   var uid = 0;
   // Rootbot on a 200x200 grid. bg is the visor colour; it should match what sits behind the bot.
@@ -840,7 +856,7 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
       pipe('M735 190V640'), pipe('M690 420H735'), band(735, 190, 66, 22), band(735, 420, 66, 22),
       // panel on the right pipe
       '<rect x="696" y="478" width="64" height="74" rx="10" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
-      '<circle class="lamp" cx="712" cy="498" r="5" fill="' + C.rally + '"/><circle class="lamp" style="animation-delay:.5s" cx="728" cy="498" r="5" fill="#C8FF00"/><circle class="lamp" style="animation-delay:1s" cx="744" cy="498" r="5" fill="#00E5FF"/>',
+      '<circle class="lamp" cx="712" cy="498" r="5" fill="' + C.rally + '"/><circle class="lamp" style="animation-delay:.5s" cx="728" cy="498" r="5" fill="' + CROWD[1] + '"/><circle class="lamp" style="animation-delay:1s" cx="744" cy="498" r="5" fill="' + CROWD[3] + '"/>',
       '<path d="M708 538A20 20 0 0 1 748 538" fill="none" stroke="' + G.edge + '" stroke-width="3"/><path class="gauge" d="M728 538L714 520" stroke="' + C.rally + '" stroke-width="3" stroke-linecap="round"/>',
       // base and floor
       '<rect x="380" y="600" width="340" height="44" rx="10" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
@@ -866,14 +882,14 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
       '<rect x="560" y="628" width="220" height="24" rx="12" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
       '<path class="belt" d="M572 640H770" stroke="' + G.edge + '" stroke-width="3" stroke-linecap="round"/>'
     ];
-    var coinsIn = [['M','#FF2D8A',470,420],['C','#C8FF00',540,392],['D','#00E5FF',618,430],['Y',C.bone,500,505],['G',C.rally,585,490],['B','#FF2D8A',650,545],['K','#00E5FF',450,560],['T','#C8FF00',560,565]];
+    var coinsIn = [['M',CROWD[2],470,420],['C',CROWD[1],540,392],['D',CROWD[3],618,430],['Y',C.bone,500,505],['G',C.rally,585,490],['B',CROWD[2],650,545],['K',CROWD[3],450,560],['T',CROWD[1],560,565]];
     coinsIn.forEach(function(c, i){
       tank.push('<g class="tcoin" style="animation-delay:-' + (i * .45) + 's"><circle cx="' + c[2] + '" cy="' + c[3] + '" r="21" fill="' + c[1] + '" stroke="' + C.void + '" stroke-width="3"/><circle cx="' + c[2] + '" cy="' + c[3] + '" r="15" fill="none" stroke="' + C.void + '" stroke-width="2" opacity=".5"/><text x="' + c[2] + '" y="' + (c[3] + 6) + '" text-anchor="middle" fill="' + C.void + '" font-size="17" style="font-family:var(--display);font-weight:800">' + c[0] + '</text></g>');
     });
     [[440,380,0],[665,395,.8],[640,480,1.6],[455,470,.4],[600,560,1.2]].forEach(function(q){ tank.push(spark(q[0], q[1], q[2])); });
     for (var bi = 0; bi < 7; bi++) tank.push('<circle class="bubble" style="animation-delay:-' + (bi * .6) + 's" cx="' + (440 + bi * 36) + '" cy="580" r="' + (2 + bi % 3) + '" fill="' + C.bone + '" opacity=".5"/>');
     // coins rolling out on the belt
-    [[C.rally,'G',0],['#C8FF00','C',1.4],['#00E5FF','D',2.8]].forEach(function(o){
+    [[C.rally,'G',0],[CROWD[1],'C',1.4],[CROWD[3],'D',2.8]].forEach(function(o){
       tank.push('<g class="out" style="animation-delay:-' + o[2] + 's"><circle cx="600" cy="612" r="17" fill="' + o[0] + '" stroke="' + C.void + '" stroke-width="3"/><text x="600" y="617" text-anchor="middle" fill="' + C.void + '" font-size="14" style="font-family:var(--display);font-weight:800">' + o[1] + '</text></g>');
     });
     // Rootbot, presenting
@@ -991,8 +1007,9 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
   function confetti(from){
     if (reduce) return;
     var r = from.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    var cs = getComputedStyle(document.documentElement), pal = CROWD.map(function(v){ return cs.getPropertyValue(v.slice(4, -1)).trim(); });
     cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; cx.setTransform(dpr,0,0,dpr,0,0);
-    for (var i = 0; i < 120; i++) bits.push({x:r.left + r.width/2, y:r.top + r.height/2, vx:(Math.random()-.5)*14, vy:-Math.random()*14-4, s:Math.random()*8+4, c:pick(CROWD), a:Math.random()*6, va:(Math.random()-.5)*.4, life:0});
+    for (var i = 0; i < 120; i++) bits.push({x:r.left + r.width/2, y:r.top + r.height/2, vx:(Math.random()-.5)*14, vy:-Math.random()*14-4, s:Math.random()*8+4, c:pick(pal), a:Math.random()*6, va:(Math.random()-.5)*.4, life:0});
     if (!running){ running = true; requestAnimationFrame(tick); }
   }
   function tick(){
