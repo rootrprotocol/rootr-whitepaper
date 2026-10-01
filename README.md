@@ -7,13 +7,13 @@ Every rooter feeds the next rooter.
 | | |
 | --- | --- |
 | Chain | Robinhood Chain, id 4663 |
-| Token | $ROOTR, fixed supply of 1,000,000,000. Launches first, on Robinhood Chain. |
+| Token | $ROOTR, fixed supply of 1,000,000,000, on Robinhood Chain |
 | Fee on every trade | 3% of the quote side. It never goes higher. |
 | Liquidity | Locked at birth. No withdraw path exists. |
 | This document | Version 1.0 |
 
 {% hint style="info" %}
-**Where things stand.** Nothing is deployed yet. $ROOTR launches first; its address is published on the Addresses page the moment it exists. The Rooter protocol is written down here in full and goes live after the token, in the order set out in [What comes next](what-comes-next.md). Nothing in this document is a prediction, and the examples in [The numbers](the-numbers.md) are worked examples, not forecasts. Addresses appear on the Addresses page as each contract is deployed and verified.
+**Where things stand.** The Rooter protocol is written down here in full and is not yet deployed. It goes live after the token, in the order set out in [What comes next](what-comes-next.md). Nothing in this document is a prediction, and the examples in [The numbers](the-numbers.md) are worked examples, not forecasts. Addresses appear on the Addresses page as each contract is deployed and verified.
 {% endhint %}
 
 ## How to read this

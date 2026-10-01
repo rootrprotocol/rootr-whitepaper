@@ -2,7 +2,7 @@
 
 Rooter ships in an order, not on a calendar. Each step starts when the one before it has been checked. No step below has a date, and none will be given one until it is done.
 
-**1. This document and the token.** This document and the site are published. $ROOTR launches on Robinhood Chain. The token address, supply and treasury addresses go on the Addresses page.
+**1. This document and the token.** This document, the site, and $ROOTR on Robinhood Chain. The token address, supply and treasury addresses go on the Addresses page.
 
 **2. The build.** The contracts in [Under the hood](under-the-hood.md) are written and tested against a copy of Robinhood Chain and on its public testnet. An outside audit of the fee hook, the escrow, the Rooter Pool and the liquidity lock, with the full report published. Deployment behind the pause, exercised with the team's own money on real coins, every contract verified on the explorer, every address published.
 

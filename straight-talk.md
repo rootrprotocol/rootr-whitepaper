@@ -20,7 +20,7 @@ Every design has a price. Here is Rooter's, said plainly, so that nothing in thi
 
 **Rules can change.** Laws about tokens that reference people, and about stock-quoted instruments, differ by country and move. The interface applies eligibility rules; the contracts are permissionless and do not.
 
-**$ROOTR comes first.** The token launches before the protocol. Its price is set by a market. Buybacks are how Rooter spends part of its revenue, not a floor under anything. Until the protocol is live, holding $ROOTR is holding a position in the plan written here, and plans can fail.
+**$ROOTR comes first.** The token comes before the protocol. Its price is set by a market. Buybacks are how Rooter spends part of its revenue, not a floor under anything. Until the protocol is live, holding $ROOTR is holding a position in the plan written here, and plans can fail.
 
 **Keys exist.** A multisig can move parameters within published ranges, add quotes and pause new activity. It cannot touch liquidity, escrow or the pools, and everything it does is on the chain. It is still a group of people with keys.
 

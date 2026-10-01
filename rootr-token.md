@@ -1,14 +1,14 @@
 # $ROOTR
 
-$ROOTR is the protocol's token. It has a fixed supply, it launches on Robinhood Chain before the protocol does, and its address is published the moment it exists.
+$ROOTR is the protocol's token. It has a fixed supply, it comes before the protocol, and its address is published on the Addresses page.
 
 ## What it is
 
 | | |
 | --- | --- |
 | Supply | 1,000,000,000, fixed. No mint function. |
-| Launch | First, on Robinhood Chain, before the protocol. Not yet launched. |
-| Address | Published on the Addresses page once the launch transaction is confirmed. None yet. |
+| Order | Before the protocol |
+| Address | Published on the Addresses page |
 | Treasury | Published on the Addresses page |
 
 You do not need $ROOTR to launch, trade, hold or claim a coin. None of the mechanics in this document require it.
@@ -25,5 +25,5 @@ You do not need $ROOTR to launch, trade, hold or claim a coin. None of the mecha
 The launch venue's creator fee on $ROOTR trading is received by the Rooter treasury. That is what funds the build, the audits and the first matchups. The venue, the treasury addresses and their movements are published with the launch.
 
 {% hint style="warning" %}
-$ROOTR launches first so the protocol can be built in the open with a funded treasury. That means holding $ROOTR before the protocol is live is holding a position in this document, not in a running product. Read [Straight talk](straight-talk.md) before you decide.
+$ROOTR comes before the protocol so the protocol can be built in the open with a funded treasury. That means holding $ROOTR before the protocol is live is holding a position in this document, not in a running product. Read [Straight talk](straight-talk.md) before you decide.
 {% endhint %}
