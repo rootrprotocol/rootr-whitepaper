@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="assets/logo/app-icon-rally.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Geist+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: one dark stage with a dotted grid, broken by two loud bands (rally, bone).
    The claim switch is the page's one moving idea; everything else stays still. */
@@ -84,17 +84,8 @@ a.pill:hover{transform:translateY(-2px)}
 /* Hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:40px;padding-block:clamp(40px, 6vw, 80px) clamp(48px, 6vw, 72px)}
 .hero-copy{display:flex;flex-direction:column;gap:28px;min-width:0}
-.hero-stage{position:relative;aspect-ratio:1;max-width:560px;width:100%;justify-self:center;display:grid;place-items:center}
-.hero-stage .halo{position:absolute;inset:8%;border-radius:50%;background:var(--rally);opacity:.16;filter:blur(60px)}
-.hero-stage .ring{position:absolute;inset:10%;border-radius:50%;border:1px solid var(--line)}
-.hero-stage .bot{width:72%;position:relative}
-.sticker{position:absolute}
-.sticker.a{top:9%;right:2%;transform:rotate(8deg)}
-.sticker.b{bottom:12%;left:0;transform:rotate(-6deg)}
-.sticker.c{top:46%;right:-2%;transform:rotate(-4deg)}
 @media (max-width:900px){
   .hero{grid-template-columns:1fr}
-  .hero-stage{order:-1;max-width:340px}
 }
 
 /* Launch preview */
@@ -301,21 +292,81 @@ footer{border-top:1px solid var(--line);padding-block:40px 48px;display:flex;fle
 .foot-links a:hover{color:var(--rally)}
 .legal{font-size:12px;line-height:1.65;color:var(--dim);max-width:78em;margin:0}
 
+/* Shuffle-style hero: copy left, an illustrated machine right */
+.nav-links{gap:26px}
+.nav-links a{display:inline-flex;align-items:center;gap:8px;height:76px;position:relative;text-transform:none;letter-spacing:.02em;font-size:14px;color:var(--mute)}
+.nav-links a svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-links a.active{color:var(--rally)}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--rally);border-radius:3px 3px 0 0}
+.nav-links a:hover{color:var(--bone)}
+.nav-links .ext{font-size:12px}
+.btn-white{display:inline-flex;align-items:center;padding:12px 22px;border-radius:10px;background:var(--bone);color:var(--void);font:500 14px var(--mono);text-decoration:none;white-space:nowrap;transition:transform .15s}
+.btn-white:hover{transform:translateY(-2px)}
+.hero{position:relative;overflow:hidden;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding-block:clamp(32px,4vw,56px) 0;align-items:center;min-height:min(820px, calc(100svh - 76px))}
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(40% 50% at 72% 55%, rgba(255,77,0,.22), transparent 70%),
+  radial-gradient(30% 40% at 10% 10%, rgba(0,229,255,.06), transparent 70%),
+  repeating-linear-gradient(90deg, transparent 0 140px, rgba(255,255,255,.018) 140px 146px),
+  linear-gradient(180deg, #0C0E12, var(--void));}
+.hero::after{content:'';position:absolute;inset:0;z-index:-1;background-image:radial-gradient(var(--dot) 1.2px, transparent 1.4px);background-size:24px 24px;mask-image:linear-gradient(90deg,#000 30%,transparent 70%);-webkit-mask-image:linear-gradient(90deg,#000 30%,transparent 70%)}
+.hero-copy{gap:26px;padding-bottom:clamp(32px,4vw,56px)}
+.kicker{display:inline-flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.kdot{width:8px;height:8px;border-radius:50%;background:var(--rally);box-shadow:0 0 12px var(--rally)}
+.hero-h{font-size:clamp(52px, 5.9vw, 86px);font-stretch:75%;letter-spacing:-.02em;line-height:.9}
+.hero-h .accent{color:var(--rally);text-shadow:0 0 40px rgba(255,77,0,.35)}
+.muted-2{color:#B9BDC6}
+.hero-ctas{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.btn-chunky{display:inline-flex;align-items:center;gap:40px;padding:20px 32px;border-radius:8px;background:var(--rally);color:var(--void);font:500 17px var(--mono);text-decoration:none;box-shadow:0 6px 0 #9E2F00, 0 14px 30px rgba(255,77,0,.25);transition:transform .12s, box-shadow .12s}
+.btn-chunky:hover{transform:translateY(-2px);box-shadow:0 8px 0 #9E2F00, 0 18px 36px rgba(255,77,0,.35)}
+.btn-chunky:active{transform:translateY(5px);box-shadow:0 1px 0 #9E2F00}
+.btn-chunky span{transition:transform .2s}.btn-chunky:hover span{transform:translateX(5px)}
+.btn-link{display:inline-flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none;font:500 16px var(--mono);padding-bottom:6px;border-bottom:1.5px solid var(--mute)}
+.btn-link svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.btn-link:hover{border-color:var(--rally);color:var(--rally)}
+.hero-facts{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:var(--mute)}
+.hero-facts b{color:var(--bone);font-weight:500}
+.machine{align-self:end;justify-self:end;width:100%;max-width:820px;margin-right:calc(var(--gutter) * -1)}
+.machine svg{display:block;width:100%;height:auto;overflow:visible}
+.try-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:center}
+.try-grid .launch{max-width:none}
+@media (max-width:1000px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .machine{justify-self:center;margin-right:0;max-width:620px}
+  .hero-copy{padding-bottom:0}
+  .try-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){.nav .btn-white{padding:10px 16px}.hero-ctas{gap:22px}.btn-chunky{gap:24px;padding:18px 24px}}
+/* Machine parts */
+#scene .swirl{stroke-dasharray:18 14;animation:dash 3s linear infinite}
+#scene .swirl.b{animation-duration:4.2s;animation-direction:reverse}
+@keyframes dash{to{stroke-dashoffset:-64}}
+#scene .flow{stroke-dasharray:3 34;animation:flow 1.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-37}}
+#scene .belt{stroke-dasharray:10 12;animation:belt .8s linear infinite}
+@keyframes belt{to{stroke-dashoffset:-22}}
+#scene .spark{transform-box:fill-box;transform-origin:center;animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{transform:scale(.3) rotate(0);opacity:.2}50%{transform:scale(1) rotate(45deg);opacity:1}}
+#scene .bubble{animation:rise 4s linear infinite}
+@keyframes rise{from{transform:translateY(0);opacity:0}15%{opacity:.8}to{transform:translateY(-250px);opacity:0}}
+#scene .lamp{animation:lamp 1.6s steps(2) infinite}
+@keyframes lamp{50%{opacity:.25}}
+#scene .glow-liquid{animation:breathe 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+#scene .scene-bot{animation:bob 3.2s ease-in-out infinite}
+#scene .tag{animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+#scene .tcoin{transform-box:fill-box;transform-origin:center;animation:swim 3.6s ease-in-out infinite}
+@keyframes swim{50%{transform:translateY(-12px) rotate(8deg)}}
+#scene .out{animation:rollout 4.2s linear infinite}
+@keyframes rollout{from{transform:translateX(-40px);opacity:0}12%{opacity:1}88%{opacity:1}to{transform:translateX(150px);opacity:0}}
+#scene .gauge{transform-box:fill-box;transform-origin:50% 100%;animation:needle 2.6s ease-in-out infinite}
+@keyframes needle{50%{transform:rotate(38deg)}}
+
 /* Motion */
 .hero .w{display:inline-block;animation:slam .7s cubic-bezier(.2,1.4,.4,1) both}
 .hero .w:nth-child(1){animation-delay:.05s}.hero .w:nth-child(3){animation-delay:.16s}.hero .w:nth-child(5){animation-delay:.27s}
 @keyframes slam{from{transform:translateY(40%) skewY(6deg) scale(.9);opacity:0}to{transform:none;opacity:1}}
-.hero-stage .bot{animation:drop 1s .25s cubic-bezier(.2,1.5,.45,1) both}
 @keyframes drop{from{transform:translateY(-30%) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
-.sticker{animation:pop .5s cubic-bezier(.2,1.8,.5,1) both}
-.sticker.a{animation-delay:.9s}.sticker.b{animation-delay:1.05s}.sticker.c{animation-delay:1.2s}
-@keyframes pop{from{scale:0}to{scale:1}}
-.hero-stage .halo{animation:breathe 4s ease-in-out infinite}
-@keyframes breathe{50%{opacity:.26;transform:scale(1.06)}}
-.orbit{position:absolute;inset:6%;border-radius:50%;animation:spin 36s linear infinite}
-.orbit .chip{position:absolute;left:50%;top:50%;width:0;height:0}
-.orbit .chip span{position:absolute;translate:-50% -50%;animation:spin 36s linear infinite reverse;display:inline-flex;padding:7px 12px;border-radius:999px;font:500 11px var(--mono);letter-spacing:.08em;color:var(--void);white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.35)}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{opacity:.36;transform:scale(1.04)}}
 .rb .tip{animation:tipPulse 2.4s ease-in-out infinite}
 @keyframes tipPulse{50%{filter:brightness(1.4) drop-shadow(0 0 6px currentColor)}}
 .reveal{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
@@ -385,29 +436,54 @@ button.pill{cursor:pointer;transition:transform .15s ease}
 <header class="nav wrap">
   <a class="brand" href="#top" aria-label="Rooter home"><span data-bot="mini"></span><span class="wordmark">Rooter</span></a>
   <nav class="nav-links" aria-label="Sections">
-    <a href="#how">Rooting</a>
-    <a href="#paid">Who gets paid</a>
-    <a href="#claim">Claim your coin</a>
-    <a href="#talk">Straight talk</a>
-    <a href="#token">$ROOTR</a>
-    <a class="docs" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Docs</a>
+    <a href="#top" class="active"><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg>Home</a>
+    <a href="#try"><svg viewBox="0 0 24 24"><path d="M12 21v-9M12 12c0-4 3-7 7-7 0 4-3 7-7 7ZM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5Z"/></svg>Launch</a>
+    <a href="#paid"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg>Who gets paid</a>
+    <a href="#claim"><svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg>Claim</a>
+    <a href="#token"><svg viewBox="0 0 24 24"><path d="M4 19 9 13l4 3 7-9"/><path d="M15 7h5v5"/></svg>$ROOTR</a>
+    <a href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1zM21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg>Docs<span aria-hidden="true" class="ext">↗</span></a>
   </nav>
   <div class="nav-cta">
     <span class="pill hot"><span class="live-dot"></span>$ROOTR · Live</span>
-    <a class="pill solid" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Whitepaper</a>
+    <a class="btn-white" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener">Whitepaper</a>
   </div>
 </header>
 
 <main id="top">
 
-<section class="hero wrap dots" aria-labelledby="hero-title">
+<section class="hero wrap" aria-labelledby="hero-title">
   <div class="hero-copy">
-    <span class="pill" style="align-self:flex-start;color:var(--mute)">Robinhood Chain · 4663</span>
-    <h1 id="hero-title" class="display h1"><span class="w">Root</span><br><span class="w">for</span><br><span class="w">anyone<span style="color:var(--rally)">.</span></span></h1>
-    <p class="lede">Paste a handle and a coin exists, with liquidity nobody can ever pull. People root for the person by trading it. The person earns from every trade. And the rooters earn too. Every rooter feeds the next rooter.</p>
+    <span class="kicker"><span class="kdot"></span>The root lab / Robinhood Chain</span>
+    <h1 id="hero-title" class="display hero-h"><span class="w">Paste a handle.</span><br><span class="w accent">Root for anyone.</span></h1>
+    <p class="lede muted-2">The crowd makes the market, so the crowd gets paid. Any handle in, a coin out, with liquidity nobody can ever pull. The person earns, the launcher earns, and so does everyone who roots.</p>
+    <div class="hero-ctas">
+      <a class="btn-chunky" href="#try">Launch a coin <span aria-hidden="true">→</span></a>
+      <a class="btn-link" href="https://rooter-3.gitbook.io/whitepaper" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1zM21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"/></svg>Docs <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-facts"><span><b>3%</b> fee, capped</span><span><b>$10K</b> opening value</span><span><b>1B</b> supply per coin</span><span><b>0</b> withdraw functions</span></div>
+  </div>
+  <div class="machine" aria-hidden="true">
+    <svg id="scene" viewBox="0 0 760 700" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+</section>
 
+<div class="ticker" aria-label="Key facts">
+  <div class="track"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
+  <div class="track" aria-hidden="true"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
+</div>
+
+<div class="handles" aria-hidden="true">
+  <div class="track" id="handles-a"></div><div class="track" id="handles-b"></div>
+</div>
+
+<section id="try" class="section wrap reveal" aria-labelledby="try-title" style="border-top:0">
+  <div class="try-grid">
+    <div class="section-head" style="margin:0;flex-direction:column;align-items:flex-start">
+      <div><span class="eyebrow">Launch lab · preview</span><h2 id="try-title" class="display h2">One transaction.<br>A coin is born.</h2></div>
+      <p class="aside" style="max-width:30em">Rooter looks up the stable account id behind the handle, so the coin follows the person if they rename. The pool opens at $10,000, the liquidity locks, and the fee hook is attached from the first trade.</p>
+    </div>
     <form class="launch" id="launch" autocomplete="off">
-      <label for="handle" class="eyebrow">Try it · paste a handle</label>
+      <label for="handle" class="eyebrow hot">Paste a handle</label>
       <div class="launch-row">
         <select id="platform" aria-label="Platform">
           <option>X</option><option>YouTube</option><option>TikTok</option><option>Instagram</option>
@@ -435,25 +511,9 @@ button.pill{cursor:pointer;transition:transform .15s ease}
       <p class="note">Preview only. $ROOTR is live on Pons. The Rooter protocol launches after its audit.</p>
     </form>
   </div>
-
-  <div class="hero-stage" aria-hidden="true">
-    <div class="halo"></div><div class="ring"></div><div class="orbit" id="orbit"></div>
-    <div class="bot" data-bot="hero"></div>
-    <span class="sticker a pill bone">GM @YOU</span>
-    <span class="sticker b pill solid">+1 Rooter</span>
-  </div>
 </section>
 
-<div class="ticker" aria-label="Key facts">
-  <div class="track"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
-  <div class="track" aria-hidden="true"><span>$ROOTR is live</span><span>◆</span><span>1,000,000,000 fixed supply</span><span>◆</span><span>3% on every trade, split four ways</span><span>◆</span><span>Liquidity locked at birth</span><span>◆</span><span>Robinhood Chain · 4663</span><span>◆</span><span>Launched on Pons</span><span>◆</span></div>
-</div>
-
-<div class="handles" aria-hidden="true">
-  <div class="track" id="handles-a"></div><div class="track" id="handles-b"></div>
-</div>
-
-<section id="crowd" class="section wrap reveal" aria-labelledby="crowd-title" style="border-top:0">
+<section id="crowd" class="section wrap reveal" aria-labelledby="crowd-title" style="border-top:0;padding-top:0">
   <div class="crowd">
     <div class="card feed" aria-label="Simulated rooting feed">
       <div class="feed-head"><span class="eyebrow hot"><span class="live-dot" style="display:inline-block;margin-right:8px"></span>Rooting right now</span><span class="eyebrow" style="color:var(--dim)">Simulated</span></div>
@@ -731,8 +791,7 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
     var id = 'g' + (uid++), s = 'fill="none" stroke-linecap="round" stroke-linejoin="round"';
     var awake = 'M59 106 L77 87 L95 106 M105 106 L123 87 L141 106', asleep = 'M62 97 H94 M106 97 H138';
     var glow = opt.glow !== false;
-    return '<svg class="rb' + (opt.asleep ? ' asleep' : '') + '" viewBox="0 0 200 200" aria-hidden="true" focusable="false" style="overflow:visible;display:block;width:100%;height:auto">' +
-      (glow ? '<defs><filter id="' + id + '" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter></defs>' : '') +
+    var inner = (glow ? '<defs><filter id="' + id + '" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter></defs>' : '') +
       '<g class="' + (opt.bob ? 'bob' : '') + '">' +
       '<path d="M100 48V24" stroke="' + fg + '" stroke-width="7" ' + s + '/>' +
       '<circle class="tip" cx="100" cy="16" r="10" fill="' + a + '"/>' +
@@ -747,8 +806,9 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
       '<path d="M80 136Q100 148 120 136" stroke="' + bg + '" stroke-width="6" ' + s + '/>' +
       '</g>' +
       '<path d="M68 154Q60 172 72 192M100 154V194M132 154Q140 172 128 192" stroke="' + fg + '" stroke-width="7" ' + s + '/>' +
-      '<circle class="tip" cx="72" cy="192" r="5" fill="' + a + '"/><circle class="tip" cx="100" cy="194" r="5" fill="' + a + '"/><circle class="tip" cx="128" cy="192" r="5" fill="' + a + '"/>' +
-      '</svg>';
+      '<circle class="tip" cx="72" cy="192" r="5" fill="' + a + '"/><circle class="tip" cx="100" cy="194" r="5" fill="' + a + '"/><circle class="tip" cx="128" cy="192" r="5" fill="' + a + '"/>';
+    if (opt.inner) return '<g class="rb' + (opt.asleep ? ' asleep' : '') + '">' + inner + '</g>';
+    return '<svg class="rb' + (opt.asleep ? ' asleep' : '') + '" viewBox="0 0 200 200" aria-hidden="true" focusable="false" style="overflow:visible;display:block;width:100%;height:auto">' + inner + '</svg>';
   }
   var kinds = {
     mini: function(){ return bot(C.bone, C.void, C.rally, {glow:false}); },
@@ -763,15 +823,87 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
   document.querySelectorAll('[data-bot]').forEach(function(el){
     var k = kinds[el.getAttribute('data-bot')]; if (k) el.innerHTML = k();
   });
+  // The Root Lab: handles drop in through the pipe, coins swirl in the tank, finished coins roll out.
+  var scene = document.getElementById('scene');
+  if (scene) {
+    var G = {pipe:'#1A1D22', pipeIn:'#2C3038', metal:'#1B1E24', edge:'#3B404A', glass:'#0E1014'};
+    function pipe(d){
+      return '<path d="' + d + '" fill="none" stroke="' + G.pipe + '" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>' +
+             '<path d="' + d + '" fill="none" stroke="' + G.pipeIn + '" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>';
+    }
+    function band(x, y, w, h){ return '<rect x="' + (x - w/2) + '" y="' + (y - h/2) + '" width="' + w + '" height="' + h + '" rx="4" fill="url(#hz)" stroke="' + G.edge + '" stroke-width="2"/>'; }
+    function spark(x, y, d){ return '<g transform="translate(' + x + ' ' + y + ')"><path class="spark" style="animation-delay:' + d + 's" d="M0-11L3-3L11 0L3 3L0 11L-3 3L-11 0L-3-3Z" fill="' + C.bone + '"/></g>'; }
+    var tank = [
+      '<ellipse class="glow-liquid" cx="550" cy="470" rx="190" ry="210" fill="' + C.rally + '" opacity=".18" filter="url(#soft)"/>',
+      // pipes
+      pipe('M790 20L610 150'), band(720, 70, 22, 66), band(690, 92, 22, 66),
+      pipe('M735 190V640'), pipe('M690 420H735'), band(735, 190, 66, 22), band(735, 420, 66, 22),
+      // panel on the right pipe
+      '<rect x="696" y="478" width="64" height="74" rx="10" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      '<circle class="lamp" cx="712" cy="498" r="5" fill="' + C.rally + '"/><circle class="lamp" style="animation-delay:.5s" cx="728" cy="498" r="5" fill="#C8FF00"/><circle class="lamp" style="animation-delay:1s" cx="744" cy="498" r="5" fill="#00E5FF"/>',
+      '<path d="M708 538A20 20 0 0 1 748 538" fill="none" stroke="' + G.edge + '" stroke-width="3"/><path class="gauge" d="M728 538L714 520" stroke="' + C.rally + '" stroke-width="3" stroke-linecap="round"/>',
+      // base and floor
+      '<rect x="380" y="600" width="340" height="44" rx="10" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      '<path d="M-20 644H780" stroke="' + G.edge + '" stroke-width="3"/>',
+      // hopper on top
+      '<polygon points="480,178 640,178 606,238 514,238" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      // tank
+      '<rect x="410" y="264" width="280" height="336" rx="28" fill="' + G.glass + '" stroke="' + G.edge + '" stroke-width="4"/>',
+      '<rect x="418" y="352" width="264" height="240" rx="22" fill="' + C.rally + '" opacity=".22"/>',
+      '<ellipse cx="550" cy="352" rx="132" ry="14" fill="' + C.rally + '" opacity=".6"/>',
+      '<ellipse class="swirl" cx="550" cy="405" rx="112" ry="20" fill="none" stroke="' + C.rally + '" stroke-width="3"/>',
+      '<ellipse class="swirl b" cx="550" cy="460" rx="118" ry="22" fill="none" stroke="' + C.rally + '" stroke-width="3"/>',
+      '<ellipse class="swirl" style="animation-delay:-1.2s" cx="550" cy="520" rx="110" ry="20" fill="none" stroke="' + C.rally + '" stroke-width="3"/>',
+      '<rect x="426" y="276" width="10" height="300" rx="5" fill="#fff" opacity=".06"/>',
+      // caps
+      '<rect x="396" y="236" width="308" height="36" rx="8" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      '<rect x="396" y="588" width="308" height="30" rx="8" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      band(550, 254, 60, 16), '<circle class="lamp" cx="420" cy="254" r="6" fill="' + C.rally + '"/>',
+      // plaque
+      '<rect x="446" y="292" width="208" height="42" rx="8" fill="' + C.void + '" stroke="' + C.rally + '" stroke-width="3"/>',
+      '<text x="550" y="322" text-anchor="middle" fill="' + C.rally + '" font-size="24" letter-spacing="2" style="font-family:var(--display);font-weight:800">ROOT LAB</text>',
+      // belt
+      '<rect x="560" y="628" width="220" height="24" rx="12" fill="' + G.metal + '" stroke="' + G.edge + '" stroke-width="3"/>',
+      '<path class="belt" d="M572 640H770" stroke="' + G.edge + '" stroke-width="3" stroke-linecap="round"/>'
+    ];
+    var coinsIn = [['M','#FF2D8A',470,420],['C','#C8FF00',540,392],['D','#00E5FF',618,430],['Y',C.bone,500,505],['G',C.rally,585,490],['B','#FF2D8A',650,545],['K','#00E5FF',450,560],['T','#C8FF00',560,565]];
+    coinsIn.forEach(function(c, i){
+      tank.push('<g class="tcoin" style="animation-delay:-' + (i * .45) + 's"><circle cx="' + c[2] + '" cy="' + c[3] + '" r="21" fill="' + c[1] + '" stroke="' + C.void + '" stroke-width="3"/><circle cx="' + c[2] + '" cy="' + c[3] + '" r="15" fill="none" stroke="' + C.void + '" stroke-width="2" opacity=".5"/><text x="' + c[2] + '" y="' + (c[3] + 6) + '" text-anchor="middle" fill="' + C.void + '" font-size="17" style="font-family:var(--display);font-weight:800">' + c[0] + '</text></g>');
+    });
+    [[440,380,0],[665,395,.8],[640,480,1.6],[455,470,.4],[600,560,1.2]].forEach(function(q){ tank.push(spark(q[0], q[1], q[2])); });
+    for (var bi = 0; bi < 7; bi++) tank.push('<circle class="bubble" style="animation-delay:-' + (bi * .6) + 's" cx="' + (440 + bi * 36) + '" cy="580" r="' + (2 + bi % 3) + '" fill="' + C.bone + '" opacity=".5"/>');
+    // coins rolling out on the belt
+    [[C.rally,'G',0],['#C8FF00','C',1.4],['#00E5FF','D',2.8]].forEach(function(o){
+      tank.push('<g class="out" style="animation-delay:-' + o[2] + 's"><circle cx="600" cy="612" r="17" fill="' + o[0] + '" stroke="' + C.void + '" stroke-width="3"/><text x="600" y="617" text-anchor="middle" fill="' + C.void + '" font-size="14" style="font-family:var(--display);font-weight:800">' + o[1] + '</text></g>');
+    });
+    // Rootbot, presenting
+    tank.push('<g transform="translate(60 352) scale(1.44)"><g class="scene-bot">' + bot(C.bone, C.void, C.rally, {inner:true}) + '</g></g>');
+    tank.push('<g class="tag"><rect x="236" y="262" width="230" height="40" rx="10" fill="' + C.panel + '" stroke="' + G.edge + '" stroke-width="2"/><text x="351" y="288" text-anchor="middle" fill="' + C.bone + '" font-size="14" style="font-family:var(--mono);font-weight:500">Handles in. Coins out.</text></g>');
+    scene.innerHTML = '<defs><pattern id="hz" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="' + C.rally + '"/><rect width="7" height="14" fill="' + C.void + '"/></pattern>' +
+      '<filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="42"/></filter></defs>' + tank.join('');
+    // handles drop from the pipe into the hopper
+    var handlesIn = ['@mom','@coach_k','@night_shift','@the_barista','@that_one_dev','@founder_mode','@you'], hi = 0, svgNS = 'http://www.w3.org/2000/svg';
+    function drop(){
+      var h = handlesIn[hi++ % handlesIn.length], w = 16 + h.length * 8.4;
+      var g = document.createElementNS(svgNS, 'g');
+      g.innerHTML = '<rect x="' + (-w/2) + '" y="-13" width="' + w + '" height="26" rx="13" fill="' + C.bone + '"/><text y="5" text-anchor="middle" fill="' + C.void + '" font-size="13" style="font-family:var(--mono);font-weight:500">' + h + '</text>';
+      g.setAttribute('transform', 'translate(600 150)');
+      scene.appendChild(g);
+      var anim = g.animate([{transform:'translate(600px,150px) rotate(-8deg)', opacity:1}, {transform:'translate(560px,240px) rotate(6deg) scale(.7)', opacity:0}], {duration:1100, easing:'cubic-bezier(.4,0,1,1)'});
+      anim.onfinish = function(){ g.remove(); };
+    }
+    if (!reduce) { drop(); setInterval(drop, 1500); }
+  }
+
   // The brand mark in the nav/footer sits at a fixed size.
   document.querySelectorAll('.brand [data-bot] svg').forEach(function(s){ s.style.width = '40px'; });
 
   // Eyes follow the pointer on the hero bot.
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var heroLook = document.querySelector('[data-bot="hero"] .look');
+  var heroLook = document.querySelector('#scene .look');
   if (heroLook && !reduce) {
     window.addEventListener('pointermove', function(e){
-      var r = heroLook.ownerSVGElement.getBoundingClientRect();
+      var r = heroLook.getBoundingClientRect();
       var dx = (e.clientX - (r.left + r.width/2)) / innerWidth, dy = (e.clientY - (r.top + r.height/2)) / innerHeight;
       heroLook.style.transform = 'translate(' + Math.max(-1,Math.min(1,dx))*7 + 'px,' + Math.max(-1,Math.min(1,dy))*5 + 'px)';
     }, {passive:true});
@@ -780,12 +912,7 @@ owed[you] += balance[you] × (rewardPerCoin − lastSettled[you])</pre>
   // Handle marquee
   var hs = ['@anyone','@your_gm_guy','@the_intern','@founder_mode','@mom','@that_one_dev','@night_shift','@the_barista','@coach','@you'];
   var row = hs.map(function(h, i){ var c = CROWD[i % 4]; return '<span class="h" style="--c:' + c + '">' + h + '</span><span class="t" style="--c:' + c + '">Rooted</span>'; }).join('');
-  // Orbiting coins around the hero bot
-  var orbit = document.getElementById('orbit');
-  if (orbit) orbit.innerHTML = ['$MOM','$COACH','$INTERN','$DEV','$BARISTA','$YOU'].map(function(t, i, a){
-    var ang = i / a.length * Math.PI * 2, r = 50;
-    return '<span class="chip" style="left:' + (50 + r*Math.cos(ang)) + '%;top:' + (50 + r*Math.sin(ang)) + '%"><span style="background:' + CROWD[i % 4] + '">' + t + '</span></span>';
-  }).join('');
+
   document.getElementById('handles-a').innerHTML = row;
   document.getElementById('handles-b').innerHTML = row;
 

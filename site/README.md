@@ -20,7 +20,7 @@ Any static host works: GitHub Pages, Netlify, Vercel or Cloudflare Pages. Point 
 
 ## What moves on the page
 
-- The hero headline slams in, Rootbot drops in, and coin chips orbit it. Rootbot's eyes follow the pointer.
+- The hero headline slams in. The Root Lab machine runs on its own: handles drop in from the pipe, coins swirl in the tank, finished coins roll out on the belt, lamps blink and the gauge sweeps. Rootbot's eyes follow the pointer.
 - **Shuffle a coin** deals a random person, platform and colour into the coin preview.
 - **Rooting right now** is a simulated feed. It is labelled as simulated and its totals come from the preview's made-up trades.
 - **The switch.** Flipping Unclaimed to Claimed moves the fee bars, wakes Rootbot and fires confetti. The calculator uses the split from the whitepaper.
