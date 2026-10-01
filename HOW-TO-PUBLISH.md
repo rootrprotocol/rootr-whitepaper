@@ -20,4 +20,4 @@ Create the file, then add a line for it in `SUMMARY.md` in the position you want
 
 ## Addresses
 
-When the $ROOTR launch transaction is confirmed, add `addresses.md` with the token address, the treasury address and the Pons page, and list it in `SUMMARY.md` after **$ROOTR**. Add each protocol contract to it as it is deployed and verified on the Robinhood Chain explorer.
+When the $ROOTR launch transaction is confirmed, add `addresses.md` with the token address, the treasury address and the launch venue page, and list it in `SUMMARY.md` after **$ROOTR**. Add each protocol contract to it as it is deployed and verified on the Robinhood Chain explorer.

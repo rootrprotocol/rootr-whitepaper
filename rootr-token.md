@@ -1,14 +1,14 @@
 # $ROOTR
 
-$ROOTR is the protocol's token. It has a fixed supply, it was launched on Pons on Robinhood Chain, and it exists before the protocol does.
+$ROOTR is the protocol's token. It has a fixed supply, it launches on Robinhood Chain before the protocol does, and its address is published the moment it exists.
 
 ## What it is
 
 | | |
 | --- | --- |
 | Supply | 1,000,000,000, fixed. No mint function. |
-| Launched | On Pons, a launchpad on Robinhood Chain built on Uniswap v4 |
-| Address | Published on the Addresses page once the launch transaction is confirmed |
+| Launch | First, on Robinhood Chain, before the protocol. Not yet launched. |
+| Address | Published on the Addresses page once the launch transaction is confirmed. None yet. |
 | Treasury | Published on the Addresses page |
 
 You do not need $ROOTR to launch, trade, hold or claim a coin. None of the mechanics in this document require it.
@@ -22,8 +22,8 @@ You do not need $ROOTR to launch, trade, hold or claim a coin. None of the mecha
 
 ## How Rooter is funded before the protocol earns
 
-Trading of $ROOTR on Pons pays Pons' standard 1% fee, and the token creator's share of that fee is received by the Rooter treasury. That is what funds the build, the audits and the first matchups. Treasury addresses and movements are published.
+The launch venue's creator fee on $ROOTR trading is received by the Rooter treasury. That is what funds the build, the audits and the first matchups. The venue, the treasury addresses and their movements are published with the launch.
 
 {% hint style="warning" %}
-$ROOTR was launched first so the protocol could be built in the open with a funded treasury. That means, today, holding $ROOTR is holding a position in this document, not in a running product. Read [Straight talk](straight-talk.md) before you decide.
+$ROOTR launches first so the protocol can be built in the open with a funded treasury. That means holding $ROOTR before the protocol is live is holding a position in this document, not in a running product. Read [Straight talk](straight-talk.md) before you decide.
 {% endhint %}

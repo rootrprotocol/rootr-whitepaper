@@ -30,8 +30,6 @@
 
 **Stock Token.** An ERC-20 issued by Robinhood Assets (Jersey) Limited that tracks a US share or ETF.
 
-**$ROOTR.** The protocol's fixed-supply token, launched on Pons.
-
-**Pons.** A launchpad on Robinhood Chain built on Uniswap v4, where $ROOTR was launched.
+**$ROOTR.** The protocol's fixed-supply token. Launches first, on Robinhood Chain.
 
 **Robinhood Chain.** An Ethereum Layer 2 built by Robinhood, chain id 4663, where all of this runs.
