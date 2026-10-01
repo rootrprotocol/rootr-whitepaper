@@ -8,7 +8,7 @@ Rooter is a set of contracts on Robinhood Chain and one offchain service, the ve
 | --- | --- | --- |
 | Factory | Births a coin: resolves the handle, deploys the coin, opens the pool at $10,000, locks the liquidity, attaches the hook | Parameters within bounds, by the multisig |
 | Coin | The ERC-20. Fixed 1,000,000,000 supply. Its transfer hook settles the Rooter Pool before any balance changes | Nobody, per coin |
-| Fee hook | Takes 3% of the quote side inside the swap and splits it by claim state | Split within bounds, by the multisig |
+| Fee hook | A Uniswap v4 hook. Takes 3% of the quote side inside the swap and splits it by claim state | Split within bounds, by the multisig |
 | Escrow | One ledger per account and quote. Verified claims. Public sweep after 90 days | Verifier key rotation, by the multisig |
 | Rooter Pool | Pays holders by balance and time. Receives fee, sweeps and matchup prizes | Nobody |
 | Quote list | Allowed quotes and their Chainlink feeds. Staleness and sequencer guards | Append only, by the multisig |
@@ -32,7 +32,7 @@ Rotate the verifier key. Add a stock quote to the allowed list. Move a parameter
 
 ## What depends on someone else
 
-- **Uniswap v4** on Robinhood Chain, for the pools.
+- **Uniswap v4** on Robinhood Chain, for the pools and the hook. Rooter is built on v4 hooks: the fee logic runs inside the swap, which is what removes the need for a collector, a sweep or a key that holds fees.
 - **Chainlink**, for quote prices and sequencer uptime. A stale price refuses a launch; it cannot make a wrong price right.
 - **Robinhood's sequencer.** The chain is an Ethereum Layer 2 with a sequencer run by Robinhood. If it stops, everything stops until it resumes; funds do not move.
 - **Robinhood Assets (Jersey) Limited**, for stock-quoted coins, under its own terms.
