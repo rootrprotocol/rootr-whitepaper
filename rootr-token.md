@@ -1,6 +1,6 @@
 # $ROOTR
 
-$ROOTR is the protocol's token. It has a fixed supply, it comes before the protocol, and its address is published on the Addresses page.
+$ROOTR is the protocol's token. It has a fixed supply, it comes before the protocol, and its address is below.
 
 ## What it is
 
@@ -8,7 +8,8 @@ $ROOTR is the protocol's token. It has a fixed supply, it comes before the proto
 | --- | --- |
 | Supply | 1,000,000,000, fixed. No mint function. |
 | Order | Before the protocol |
-| Address | Published on the Addresses page |
+| Address | [`0x308a36749bdac6e3c50a41299b3bdc564423590d`](https://robinhoodchain.blockscout.com/token/0x308a36749bdac6e3c50a41299b3bdc564423590d) |
+| Chain | Robinhood Chain, 4663 |
 | Treasury | Published on the Addresses page |
 
 You do not need $ROOTR to launch, trade, hold or claim a coin. None of the mechanics in this document require it.
